@@ -4,18 +4,32 @@ Para rodar a aplicação, siga os passos abaixo:
 
 1. **Copiar todos os arquivos para uma pasta no servidor Docker:**
    - Faça um clone do projeto para uma pasta no servidor Docker.
-   - 
+   - gh repo clone bravo18br/docker-chama-o-samu
 
 2. **Editar o `.env`:**
-   - Abra o arquivo `.env.example` na pasta do projeto.
-   - Adicione a linha `GITHUB_TOKEN=<seu_github_token>`.
+   - Renomeie o arquivo `.env.example` para `.env` na pasta do projeto.
+   - Preencha a linha `GITHUB_TOKEN=<seu_github_token>`.
    - Edite as linhas `MAIL_USERNAME='usuario@gmail.com'` e `MAIL_PASSWORD='senha para aplicaçoes do Google'`.
 
-3. **Rodar o Docker Compose:**
+3. **Criar a imagem:**
+   - Navegue até a pasta do projeto no terminal.
+   - Execute o comando:
+     ```sh
+     docker build -t chama_o_samu:1.0 .
+     ```
+
+4. **Rodar o Docker Compose:**
    - Navegue até a pasta do projeto no terminal.
    - Execute o comando:
      ```sh
      docker-compose up -d
+     ```
+
+5. **Caso precise parar a execução:**
+   - Navegue até a pasta do projeto no terminal.
+   - Execute o comando:
+     ```sh
+     docker-compose down
      ```
 
 ### Conseguir o GITHUB_TOKEN
@@ -68,53 +82,24 @@ Para obter as credenciais do GMAIL, siga os passos abaixo:
 5. **Adicionar as credenciais ao arquivo `.env`:**
    - No arquivo `.env`, defina `MAIL_USERNAME='usuario@gmail.com'` e `MAIL_PASSWORD='senha_gerada'`.
 
-### Estrutura de Diretórios
-
-Certifique-se de que a estrutura de diretórios no servidor Docker esteja conforme abaixo:
-
-```plaintext
-/project-root-folder
-│
-├── .env
-├── docker-compose.yml
-├── Dockerfile
-├── apache.conf
-├── gh_login.sh
-└── samu-acessibilidade/
-    ├── app/
-    ├── bootstrap/
-    ├── config/
-    ├── database/
-    ├── public/
-    ├── resources/
-    ├── routes/
-    ├── storage/
-    ├── tests/
-    └── vendor/
-```
-
 ### Executando a Aplicação
 
-Após configurar tudo conforme acima:
-
-1. **Inicie a aplicação:**
-   - No terminal, navegue até a pasta do projeto.
-   - Execute:
+1. **Acesse a aplicação:**
+   - Navegue até a pasta do projeto no terminal.
+   - Execute o comando:
      ```sh
+     docker build -t chama_o_samu:1.0 .
      docker-compose up -d
      ```
 
-2. **Verifique se os contêineres estão em execução:**
-   - Use o comando:
-     ```sh
-     docker-compose ps
-     ```
-
-3. **Acesse a aplicação:**
+2. **Acesse a aplicação:**
    - Abra o navegador e acesse:
      ```plaintext
-     http://localhost:8098
+     http://localhost:8078
      ```
    - Ou, se estiver acessando de outro dispositivo na mesma rede, substitua `localhost` pelo endereço IP do servidor.
+    ```plaintext
+     http://172.20.10.37:8078/
+     ```
 
 Seguindo essas instruções, você deverá ser capaz de rodar a aplicação Laravel usando Docker e Docker Compose.
