@@ -4,7 +4,7 @@ Para rodar a aplicação, siga os passos abaixo:
 
 1. **Copiar todos os arquivos para uma pasta no servidor Docker:**
    - Faça um clone do projeto para uma pasta no servidor Docker.
-   - gh repo clone bravo18br/docker-chama-o-samu
+   - gh repo clone bravo18br/docker-chama-o-samu prod_araucaria_chama_o_samu
 
 2. **Editar o `.env`:**
    - Renomeie o arquivo `.env.example` para `.env` na pasta do projeto.
