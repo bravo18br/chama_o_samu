@@ -3,8 +3,8 @@ version: '3.8'
 services:
   app:
     build: .
-    container_name: chama_o_samu
-    image: chama_o_samu:1.0
+    container_name: prod_araucaria_chama_o_samu
+    image: chama_o_samu:alpha
     restart: always
     working_dir: /var/www/html
     cpus: "1.0"
