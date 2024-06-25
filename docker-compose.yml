@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: chama_o_samu
+    restart: always
+    working_dir: /var/www/html
+    cpus: "1.0"
+    mem_limit: 256m
+    ports:
+      - "8078:80"
+    volumes:
+      - ./app:/var/www/html
+      - ./apache.conf:/etc/apache2/sites-available/000-default.conf
+    networks:
+      - chama_o_samu
+    environment:
+      - APACHE_RUN_USER=www-data
+      - APACHE_RUN_GROUP=www-data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost || exit 1"]
+      interval: 30s 
+      timeout: 10s
+      retries: 3
+networks:
+  chama_o_samu:
+    name: chama_o_samu
