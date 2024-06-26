@@ -18,8 +18,10 @@ gh repo clone https://github.com/prefeitura-araucaria/samu-acessibilidade /var/w
 # Move o arquivo .env para o diretório clonado
 mv /root/.env /var/www/html/.env
 
-# Criar o database
-touch /var/www/html/database/samu-acessibilidade.db
+# Verifica se o arquivo de database já existe antes de criar um novo
+if [ ! -f /var/www/html/database/samu-acessibilidade.db ]; then
+  touch /var/www/html/database/samu-acessibilidade.db
+fi
 
 # Define as permissões corretas
 chown -R www-data:www-data /var/www/html
