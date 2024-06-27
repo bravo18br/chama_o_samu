@@ -88,7 +88,7 @@ Para obter as credenciais do GMAIL, siga os passos abaixo:
    - Navegue até a pasta do projeto no terminal.
    - Execute o comando:
      ```sh
-     docker build -t chama_o_samu:1.0 .
+     docker build -t chama_o_samu:alpha .
      docker-compose up -d
      ```
 
