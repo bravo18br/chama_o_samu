@@ -4,7 +4,9 @@ Para rodar a aplicação, siga os passos abaixo:
 
 1. **Copiar todos os arquivos para uma pasta no servidor Docker:**
    - Faça um clone do projeto para uma pasta no servidor Docker.
-   - gh repo clone bravo18br/docker-chama-o-samu prod_araucaria_chama_o_samu
+      ```sh
+      gh repo clone bravo18br/docker-chama-o-samu prod_araucaria_chama_o_samu
+      ```
 
 2. **Editar o `.env`:**
    - Renomeie o arquivo `.env.example` para `.env` na pasta do projeto.
@@ -22,14 +24,14 @@ Para rodar a aplicação, siga os passos abaixo:
    - Navegue até a pasta do projeto no terminal.
    - Execute o comando:
      ```sh
-     docker-compose up -d
+     docker compose up -d
      ```
 
 5. **Caso precise parar a execução:**
    - Navegue até a pasta do projeto no terminal.
    - Execute o comando:
      ```sh
-     docker-compose down
+     docker compose down
      ```
 
 ### Conseguir o GITHUB_TOKEN
@@ -89,7 +91,7 @@ Para obter as credenciais do GMAIL, siga os passos abaixo:
    - Execute o comando:
      ```sh
      docker build -t chama_o_samu:alpha .
-     docker-compose up -d
+     docker compose up -d
      ```
 
 2. **Acesse a aplicação:**
