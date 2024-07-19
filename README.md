@@ -1,107 +1,61 @@
-### Instruções para Rodar a Aplicação
+# Projeto CHAMA O SAMU
 
-Para rodar a aplicação, siga os passos abaixo:
+Este projeto foi desenvolvido pela equipe de desenvolvimento da SMCIT (Prefeitura Municipal de Araucária - Secretaria Municipal da Ciência, Inovação,
+                Tecnologia e Desenvolvimento) com o objetivo de atender lei municipal que visa facilitar a abertura de chamados para o SAMU por usuários surdos/mudos.
 
-1. **Copiar todos os arquivos para uma pasta no servidor Docker:**
-   - Faça um clone do projeto para uma pasta no servidor Docker.
-      ```sh
-      gh repo clone bravo18br/docker-chama-o-samu prod_araucaria_chama_o_samu
-      ```
+[LEI N° 4.375 DE 15 DE MARÇO DE 2024](https://sapl.araucaria.pr.leg.br/norma/1833)
+Dispõe sobre a criação do aplicativo “CHAMA O SAMU” para assegurar o atendimento médico de urgência a pessoas com deficiência auditiva e com incapacidade de fala ao Serviço de Atendimento Móvel de Urgência (SAMU)."
 
-2. **Editar o `.env`:**
-   - Renomeie o arquivo `.env.example` para `.env` na pasta do projeto.
-   - Preencha a linha `GITHUB_TOKEN=<seu_github_token>`.
-   - Edite as linhas `MAIL_USERNAME='usuario@gmail.com'` e `MAIL_PASSWORD='senha para aplicaçoes do Google'`.
+## Tecnologias Utilizadas
 
-3. **Criar a imagem:**
-   - Navegue até a pasta do projeto no terminal.
-   - Execute o comando:
-     ```sh
-     docker build -t chama_o_samu:alpha .
-     ```
+O projeto utiliza as seguintes tecnologias:
 
-4. **Rodar o Docker Compose:**
-   - Navegue até a pasta do projeto no terminal.
-   - Execute o comando:
-     ```sh
-     docker compose up -d
-     ```
+- **Laravel**: Framework PHP utilizado para o desenvolvimento do backend da aplicação.
+- **Livewire**: Biblioteca utilizada para o desenvolvimento de interfaces dinâmicas no Laravel.
+- **Tailwind CSS**: Framework CSS utilizado para o design e estilização da interface do usuário.
+- **Vite**: Ferramenta de compilação de JavaScript utilizada para o desenvolvimento frontend.
+- **Axios**: Cliente HTTP utilizado para fazer requisições assíncronas ao servidor.
+- **Germano Ricardi Brazilian Helper**: Biblioteca PHP para auxiliar na manipulação de dados brasileiros, como CPF e CEP.
+- **Carbon**: Biblioteca para manipulação de datas e horas em PHP.
+- **Laravel Breeze**: Pacote Laravel para autenticação de usuários.
+- **Nesbot Carbon**: Extensão da biblioteca Carbon para manipulação de datas e horas em PHP.
+- **TongeDev RFB Document**: Biblioteca PHP para validação de CPFs.
 
-5. **Caso precise parar a execução:**
-   - Navegue até a pasta do projeto no terminal.
-   - Execute o comando:
-     ```sh
-     docker compose down
-     ```
+## Equipe de Desenvolvimento SMCIT
 
-### Conseguir o GITHUB_TOKEN
+Este projeto foi criado pela equipe de desenvolvimento da Secretaria Municipal de Ciência e Tecnologia (SMCIT) da cidade de Araucária PR. A equipe é composta por desenvolvedores especializados em diferentes áreas, incluindo desenvolvimento web, design de interfaces e gerenciamento de projetos.
 
-Para gerar um token de acesso pessoal (Personal Access Token) no GitHub, siga os passos abaixo:
+### Membros da Equipe:
 
-1. **Acesse o GitHub:**
-   - Abra seu navegador e vá para [GitHub](https://github.com).
-   - Faça login com sua conta do GitHub.
+- [Francisco Cartaxo](https://github.com/chicocartaxo) - Coordenador.
+- [Andre Callman](https://github.com/andrecallman) - Gerente de Projeto.
+- [Christoffer Klein](https://github.com/bravo18br) - Desenvolvedor Fullstack.
+- [Williane Leal](https://github.com/willianeleal) - Desenvolvedor Frontend.
 
-2. **Navegue até as Configurações:**
-   - Clique no ícone do seu perfil no canto superior direito.
-   - Selecione "Settings" (Configurações) no menu suspenso.
+## Como Contribuir
 
-3. **Acesse a seção de Tokens:**
-   - No menu lateral esquerdo, clique em "Developer settings" (Configurações de desenvolvedor).
-   - Em seguida, clique em "Personal access tokens" (Tokens de acesso pessoal).
-   - Selecione "Tokens (classic)" para criar um token de acesso clássico.
+Para contribuir com este projeto, siga estas etapas:
 
-4. **Gerar um novo token:**
-   - Clique no botão "Generate new token" (Gerar novo token).
-   - Dê um nome ao token para referência futura.
-   - Selecione as permissões necessárias. Para acessar repositórios privados, selecione `repo`.
-   - Desça até o final da página e clique em "Generate token" (Gerar token).
+1. Faça um fork do repositório
+2. Crie uma branch para sua funcionalidade (`git checkout -b feature/MinhaFuncionalidade`)
+3. Faça commit das suas alterações (`git commit -am 'Adicionando nova funcionalidade'`)
+4. Faça push para a branch (`git push origin feature/MinhaFuncionalidade`)
+5. Crie um novo Pull Request
 
-5. **Copiar o token:**
-   - O token será exibido uma única vez. Copie-o e armazene-o em um lugar seguro.
-   - Adicione o token copiado ao arquivo `.env` da sua aplicação.
+## Licença
 
-### Conseguir Credenciais do GMAIL
+Este projeto é licenciado sob a Licença MIT - veja o arquivo [LICENSE.md](LICENSE.md) para detalhes.
 
-Para obter as credenciais do GMAIL, siga os passos abaixo:
+## Início básico
 
-1. **Acesse a conta do Google:**
-   - Abra seu navegador e vá para [Google](https://accounts.google.com).
-   - Faça login com sua conta do Google.
+- composer install
+- conferir .env.example
+- php artisan key:generate
+- php artisan migrate:refresh
+- php artisan db:seed
+- php artisan serve
+- os usuários de teste podem ser vistos no arquivo de seed (não usar na versão de produção)
 
-2. **Navegue até as Configurações de Segurança:**
-   - Clique na sua foto de perfil no canto superior direito e selecione "Gerenciar sua Conta do Google".
-   - No menu lateral esquerdo, clique em "Segurança".
+## Deploy
 
-3. **Ative a verificação em duas etapas:**
-   - Em "Como fazer login no Google", clique em "Verificação em duas etapas" e siga as instruções para ativá-la.
-
-4. **Crie uma senha de aplicativo:**
-   - Após ativar a verificação em duas etapas, vá para a seção "Senhas de app".
-   - Selecione "Correio" e "Computador Windows" (ou outro dispositivo se preferir) e clique em "Gerar".
-   - Uma senha será gerada. Copie essa senha.
-
-5. **Adicionar as credenciais ao arquivo `.env`:**
-   - No arquivo `.env`, defina `MAIL_USERNAME='usuario@gmail.com'` e `MAIL_PASSWORD='senha_gerada'`.
-
-### Executando a Aplicação
-
-1. **Acesse a aplicação:**
-   - Navegue até a pasta do projeto no terminal.
-   - Execute o comando:
-     ```sh
-     docker build -t chama_o_samu:alpha .
-     docker compose up -d
-     ```
-
-2. **Acesse a aplicação:**
-   - Abra o navegador e acesse:
-     ```plaintext
-     http://localhost:8078
-     ```
-   - Ou, se estiver acessando de outro dispositivo na mesma rede, substitua `localhost` pelo endereço IP do servidor.
-    ```plaintext
-     http://172.20.10.37:8078/
-     ```
-
-Seguindo essas instruções, você deverá ser capaz de rodar a aplicação Laravel usando Docker e Docker Compose.
+- Docker / Docker-compose
