@@ -1,2 +1,2 @@
-<img src="{{ asset ('/storage/images/samu-logo.png') }}">
+<img src="{{ asset ('/storage/images/samu-logo(128x128).png') }}">
 

@@ -22,7 +22,7 @@
     </div>
 
     <footer>
-        <div class="carao d-flex">
+        <div class="cartao d-flex">
             <div class="item-footer">
                 <a target="_blank" href="#">
                     <img src="{{ asset('/storage/images/email.png') }}" alt="" class="icone_footer">
@@ -48,7 +48,7 @@
                 </a>
             </div>
         </div>
-        <div class="carao">
+        <div class="cartao">
             <p style="text-align: center;">&copy; 2024 Copyright: Prefeitura Municipal de Araucária - Secretaria Municipal da Ciência, Inovação, Tecnologia e Desenvolvimento</p>
         </div>
     </footer>

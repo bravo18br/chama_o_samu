@@ -1,3 +1,12 @@
+:root {
+    --cor-principal-1: rgba(218, 34, 42, 1);
+    --cor-principal-2: rgba(243, 130, 34, 1);
+    --cor-apoio: rgba(255, 233, 217, 1);
+    --cor-reforco-positivo: rgba(106, 216, 0, 1);
+    --cor-apoio-transparente: rgba(255, 233, 217, 0.3);
+    --cor-letra-branco: white;
+    --cor-letra-preto: black;
+}
 
 .background-image {
     position: fixed;
@@ -8,23 +17,83 @@
     background-image: url('/storage/images/background_araucaria.jpg');
     background-size: cover;
     background-position: center;
-    z-index: -1;
-    opacity: 0.5;
+    z-index: -3;
+    opacity: 0.8;
+}
+
+.texto_welcome {
+    color: var(--cor-letra-branco);
+}
+
+.btn-cor-principal-1 {
+    margin: 1rem;
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    border-radius: 5px;
+    background-color: var(--cor-principal-1);
+    border-color: var(--cor-principal-1);
+    color: var(--cor-letra-branco);
+}
+
+.btn-cor-principal-1:hover,
+.btn-cor-principal-1:focus,
+.btn-cor-principal-1:active {
+    background-color: rgba(218, 34, 42, 0.8);
+    border-color: rgba(218, 34, 42, 0.8);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--cor-principal-2);
+    opacity: 0.6;
+    z-index: -2;
 }
 
 .icone_footer {
     width: 100px;
     height: 100px;
+    transition: background-image 0.3s ease-in-out;
 }
 
 .texto_footer {
-    color: black;
+    color: var(--cor-letra-preto);
 }
 
-.carao {
+.icone_email {
+    background-image: url('/storage/images/email-preto-390px.svg');
+}
+
+.icone_email:hover {
+    background-image: url('/storage/images/email-laranja-390px.svg');
+}
+
+.icone_mapa {
+    background-image: url('/storage/images/mapa-preto-390px.svg');
+}
+
+.icone_mapa:hover {
+    background-image: url('/storage/images/mapa-laranja-390px.svg');
+}
+
+.icone_telefone {
+    background-image: url('/storage/images/telefone-preto-390px.svg');
+}
+
+.icone_telefone:hover {
+    background-image: url('/storage/images/telefone-laranja-390px.svg');
+}
+
+.texto_copyright {
+    color: var(--cor-letra-branco);
+}
+
+.cartao {
     margin: 1rem;
     padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: var(--cor-apoio-transparente);
     border-radius: 10px;
 }
 
@@ -48,11 +117,11 @@
 
 .img_cartao {
     border-radius: 5px;
-    width: 15rem;  
+    width: 15rem;
     height: 15rem;
 }
 
-.div_cartao{
+.div_cartao {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -60,43 +129,45 @@
     background-color: transparent;
     margin: 0.5rem;
     cursor: pointer;
-    border-radius: 5px;    
+    border-radius: 5px;
 }
 
-.img-ini{
+.img-ini {
     width: 90% !important;
     height: 30% !important;
 }
-.img-cards{
+
+.img-cards {
     width: 19rem !important;
     height: 12rem !important;
 }
 
 .div_cartao:hover {
-    box-shadow: 0 0 30px rgba(0, 0, 255, 0.5); 
+    box-shadow: 0 0 30px rgba(0, 0, 255, 0.5);
 }
 
-.legenda:hover{
+.legenda:hover {
     font-size: 1.2rem;
     margin: 5px;
-    color:red;
+    color: red;
     font-size: 1.2rem;
     font-weight: 900;
 }
-.cards{  
+
+.cards {
     /* background: radial-gradient(circle, rgba(247,238,242,1) 0%, rgb(207, 198, 198) 100%); */
     background: linear-gradient(180deg, #a1b4d8 0%, #f88a89 100%);
-    flex-wrap: wrap; 
-    justify-content:space-evenly;    
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     /* height: 100vh;     */
 }
 
-.btn-seta{
-    position:fixed;
-    border:none;
+.btn-seta {
+    position: fixed;
+    border: none;
     width: 80px;
     height: 90px;
-    top:200px;
+    top: 200px;
     cursor: pointer;
 }
 
@@ -105,15 +176,16 @@
     padding-bottom: 3rem;
 }
 
-@media(max-width:700px){
-    
+@media(max-width:700px) {
+
     .d-none {
         display: none !important;
     }
-    .img_cartao {      
+
+    .img_cartao {
         border-radius: 5px;
         /* width: 183%;       */
-        height: -webkit-fill-available;        
+        height: -webkit-fill-available;
     }
 
     .div_cartao {
@@ -122,18 +194,19 @@
         margin-bottom: 20px;
         justify-content: center;
         align-items: center;
-        padding: 2px;      
+        padding: 2px;
     }
-    
-    .btn-seta{
-        position:fixed;
-        border:none;
+
+    .btn-seta {
+        position: fixed;
+        border: none;
         width: 48px;
         height: 49px;
         /* top:520px; */
         cursor: pointer;
     }
-    .img-ini{
+
+    .img-ini {
         max-width: 355%;
     }
 }
@@ -141,12 +214,13 @@
 
 
 
-.pulsar img{
+.pulsar img {
     width: 141px;
     height: 143px;
     background: transparent;
 }
-.pulsar{
+
+.pulsar {
     position: relative;
     width: 200px;
     height: 200px;
@@ -155,54 +229,61 @@
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    margin:22%;
+    margin: 22%;
 }
-.pulsar::before, .pulsar::after{
+
+.pulsar::before,
+.pulsar::after {
     content: '';
     display: block;
     position: absolute;
     left: -30px;
     right: -30px;
-    top:-30px;
+    top: -30px;
     bottom: -30px;
     border-radius: 50%;
     border: 15px solid #dfdada;
     animation: animar 1.5s linear infinite;
 }
-.pulsar::after{
+
+.pulsar::after {
     animation-delay: .5s;
 }
-@keyframes animar{
-    0%{
+
+@keyframes animar {
+    0% {
         transform: scale(0.5);
         opacity: 0;
     }
-    50%{
+
+    50% {
         opacity: 1;
     }
-    100%{
+
+    100% {
         transform: scale(1.2);
         opacity: 0;
     }
 }
-.cad-ini{
+
+.cad-ini {
     height: 50vh;
 }
 
 tr:hover {
-    background-color: #f5f5f5; 
+    background-color: #f5f5f5;
 }
 
-.div_cartao input[type="checkbox"]:checked + label {
-    border: 2px solid blue; 
-    box-shadow: 0 0 30px rgba(0, 0, 255, 0.5); 
+.div_cartao input[type="checkbox"]:checked+label {
+    border: 2px solid blue;
+    box-shadow: 0 0 30px rgba(0, 0, 255, 0.5);
     border-radius: 5px;
 }
 
-.borda_amarela{
+.borda_amarela {
     border: solid 1px yellow;
 }
 
-.borda_azul{
+.borda_azul {
     border: solid 1px blue;
 }

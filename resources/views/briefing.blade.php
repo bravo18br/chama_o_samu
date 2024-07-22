@@ -19,10 +19,10 @@
 
 <body>
     <div class="background-image"></div>
-    <div class="carao">
+    <div class="cartao">
         <p class="text-center fw-bold fs-2">Chama o Samu</p>
     </div>
-    <div class="carao">
+    <div class="cartao">
         <a class="btn btn-warning m-1 p-3" href="{{ route('home') }}" role="button"><b>VOLTAR</b></a>
 
         <p class="fw-bold fs-2">Resumo:</p>
@@ -84,7 +84,7 @@
         <a class="btn btn-warning m-1 p-3" href="{{ route('home') }}" role="button"><b>VOLTAR</b></a>
     </div>
 
-    <footer class="carao d-flex flex-column justify-content-center align-items-center">
+    <footer class="cartao d-flex flex-column justify-content-center align-items-center">
         <div class="d-flex flex-column align-items-center">
             <div class="row">
                 <div class="item-footer col-sm-4">
@@ -114,7 +114,7 @@
             </div>
         </div>
     </footer>
-    <div class="carao">
+    <div class="cartao">
         <p class="text-center">&copy; 2024 Copyright: Prefeitura Municipal de Araucária - Secretaria Municipal da
             Ciência, Inovação, Tecnologia e Desenvolvimento</p>
     </div>
