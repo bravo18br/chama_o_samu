@@ -143,8 +143,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'voltar',
                 'legenda_user' => 'Voltar',
                 'legenda_samu' => 'Botão voltar',
-                'imagem_nome' => 'botao-voltar.png',
-                'imagem_caminho' => 'public/images/botao-voltar.png',
+                'imagem_nome' => 'botao-voltar.svg',
+                'imagem_caminho' => 'public/images/botao-voltar.svg',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -170,8 +170,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'avancar',
                 'legenda_user' => 'Avançar',
                 'legenda_samu' => 'Avançar',
-                'imagem_nome' => 'botao-avancar.png',
-                'imagem_caminho' => 'public/images/botao-avancar.png',
+                'imagem_nome' => 'botao-avancar.svg',
+                'imagem_caminho' => 'public/images/botao-avancar.svg',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -377,8 +377,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'foto',
                 'legenda_user' => 'Enviar foto da emergência',
                 'legenda_samu' => 'Tirei foto da emergência',
-                'imagem_nome' => 'tirar-foto-problema.jpg',
-                'imagem_caminho' => 'public/images/tirar-foto-problema.jpg',
+                'imagem_nome' => 'tirar-foto-problema.svg',
+                'imagem_caminho' => 'public/images/tirar-foto-problema.svg',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -386,8 +386,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'registrar',
                 'legenda_user' => 'Abrir chamado',
                 'legenda_samu' => 'Estou aguardando atendimento',
-                'imagem_nome' => 'abrir-chamado.jpg',
-                'imagem_caminho' => 'public/images/abrir-chamado.jpg',
+                'imagem_nome' => 'abrir-chamado.svg',
+                'imagem_caminho' => 'public/images/abrir-chamado.svg',
                 'created_at' => now(),
                 'updated_at' => now()
             ]

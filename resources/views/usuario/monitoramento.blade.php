@@ -52,8 +52,8 @@
                     <p id="chamado_id" data-id="{{$chamado->id}}">Chamado ID: {{$chamado->id}}</p>
                     <p>Abertura: {{ $formataExibicao->data_hora($chamado->created_at) }}</p>
                     <p title="Localização automática (talvez não seja precisa)">Geolocalização: {{$chamado->geolocalizacao}}</p>
-                    <p id="id_latitude_value{{$chamado->id}}" class="d-none" value="{{ $chamado->latitude }}"></p>
-                    <p id="id_longitude_value{{$chamado->id}}" class="d-none" value="{{ $chamado->longitude }}"></p>
+                    <p id="id_latitude_value_{{$chamado->id}}" class="d-none" value="{{ $chamado->latitude }}"></p>
+                    <p id="id_longitude_value_{{$chamado->id}}" class="d-none" value="{{ $chamado->longitude }}"></p>
                     <p class="{{ $chamado->user->role==3 && $chamado->anotacao_samu == null ? 'd-none' : 'd-flex' }}">Anotação SAMU:</p>
                     <textarea id="id_textarea_anotacao" class="{{ $chamado->anotacao_samu == null ? 'd-none' : 'd-flex' }}" style="background-color: transparent; border: none; height: 100px;" readonly>{{$chamado->anotacao_samu}}</textarea>
                     @if (!$chamado->user->role==3)

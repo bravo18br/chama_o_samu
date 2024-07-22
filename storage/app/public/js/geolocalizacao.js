@@ -33,18 +33,19 @@ function exibirMapa(id) {
     const div_map = document.getElementById('map' + id);
     div_map.classList.add('d-flex');
     div_map.classList.remove('d-none');
+    console.log('ID: ', id)
     const latitude = document.getElementById('id_latitude_value_' + id).getAttribute('value');
     const longitude = document.getElementById('id_longitude_value_' + id).getAttribute('value');
-    
+
     if (latitude == '' || latitude == '-999' || longitude == '' || longitude == '-999') {
         div_map.classList.add('d-none');
         div_map.classList.remove('d-flex');
         return;
     }
-    
+
     const geoloc = `${latitude},${longitude}`;
     var coords = geoloc.split(',').map(Number);
-    
+
     // Verificar se o mapa já foi inicializado
     if (div_map._leaflet_id) {
         // Se o mapa já foi inicializado, ajustar a visualização
@@ -56,7 +57,7 @@ function exibirMapa(id) {
         var map = L.map('map' + id).setView(coords, 14);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
         L.marker(coords).addTo(map);
-        
+
         // Guardar uma referência ao mapa no elemento div
         div_map._leaflet_map = map;
     }
