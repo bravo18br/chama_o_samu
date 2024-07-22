@@ -29,10 +29,11 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-        <livewire:layout.navigation />
+    <div class="background-image"></div>
+    <div class="overlay"></div>
 
-        <!-- Page Heading -->
+    <div class="cartao d-flex flex-column justify-content-center align-items-center">
+        <livewire:layout.navigation />
         @if (isset($header))
         <header class="bg-white dark:bg-gray-800 shadow">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
@@ -40,14 +41,12 @@
             </div>
         </header>
         @endif
-
-        <!-- Page Content -->
         <main>
             {{ $slot }}
         </main>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <!-- <script type="module" src="{{ asset('/storage/js/service-worker.js') }}"></script> -->
     <script type="module" src="{{ asset('/storage/js/app.js') }}"></script>
     <script src="{{ asset('build/assets/app-D2jpX1vH.js') }}" type="module"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
