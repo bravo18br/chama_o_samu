@@ -5,33 +5,31 @@
                 <div class="card m-1 p-1" style="border: solid black 2px;">
                     <h1>PAGINA DE MONITORAMENTO</h1>
                 </div>
-                @if ($chamado===null)
+                @if ($chamado === null)
                 <h1>Não existem chamados registrados nessa conta</h1>
                 @else
                 <div class="card m-1 p-1" style="background-color: transparent;">
                     <p>Solicitante</p>
                     <p>Nome: {{$chamado->user->name}}</p>
                     <p>Email: {{$chamado->user->email}}</p>
-                    @if (!$chamado->user->role==3)
+                    @if (!$chamado->user->role == 3)
                     <p>Tipo usuário:
-                        <?php
-                        switch ($chamado->user->role) {
-                            case 1:
-                                echo "SuperAdmin";
-                                break;
-                            case 2:
-                                echo "OperadorSamu";
-                                break;
-                            case 3:
-                                echo "RegularUser";
-                                break;
-                            case 4:
-                                echo "AdminSamu";
-                                break;
-                            default:
-                                echo "Role inválida";
-                        }
-                        ?>
+                        @switch($chamado->user->role)
+                            @case(1)
+                                SuperAdmin
+                                @break
+                            @case(2)
+                                OperadorSamu
+                                @break
+                            @case(3)
+                                RegularUser
+                                @break
+                            @case(4)
+                                AdminSamu
+                                @break
+                            @default
+                                Role inválida
+                        @endswitch
                     </p>
                     @endif
                     <p>Analfabeto: {{ $chamado->user->analfabeto == 1 ? 'Sim' : 'Não' }}</p>
@@ -54,18 +52,18 @@
                     <p title="Localização automática (talvez não seja precisa)">Geolocalização: {{$chamado->geolocalizacao}}</p>
                     <p id="id_latitude_value_{{$chamado->id}}" class="d-none" value="{{ $chamado->latitude }}"></p>
                     <p id="id_longitude_value_{{$chamado->id}}" class="d-none" value="{{ $chamado->longitude }}"></p>
-                    <p class="{{ $chamado->user->role==3 && $chamado->anotacao_samu == null ? 'd-none' : 'd-flex' }}">Anotação SAMU:</p>
+                    <p class="{{ $chamado->user->role == 3 && $chamado->anotacao_samu == null ? 'd-none' : 'd-flex' }}">Anotação SAMU:</p>
                     <textarea id="id_textarea_anotacao" class="{{ $chamado->anotacao_samu == null ? 'd-none' : 'd-flex' }}" style="background-color: transparent; border: none; height: 100px;" readonly>{{$chamado->anotacao_samu}}</textarea>
-                    @if (!$chamado->user->role==3)
+                    @if (!$chamado->user->role == 3)
                     <div class="input-group mb-3">
-                        <input id="id_input_anotacao" type="text" class="form-control" style=" border-top-left-radius: 5px; border-bottom-left-radius: 5px;" placeholder="Inserir anotação + ENTER para salvar" aria-label="Adicionar anotação" aria-describedby="button-addon2">
+                        <input id="id_input_anotacao" type="text" class="form-control" style="border-top-left-radius: 5px; border-bottom-left-radius: 5px;" placeholder="Inserir anotação + ENTER para salvar" aria-label="Adicionar anotação" aria-describedby="button-addon2">
                         <button id="id_botao_anotacao" class="btn btn-outline-secondary" style="border-radius:0; border-top-right-radius: 5px; border-bottom-right-radius: 5px;" type="button" id="button-addon2">Salvar</button>
                     </div>
                     @endif
-                    @if ($chamado->user->role==3)
+                    @if ($chamado->user->role == 3)
                     <p id="id_chamado_situacao" class="d-none" value="{{$chamado->situacao}}"></p>
                     @endif
-                    @if (!$chamado->user->role==3)
+                    @if (!$chamado->user->role == 3)
                     <div class="d-flex justify-content-center align-items-center">
                         <p id="id_chamado_situacao" value="{{$chamado->situacao}}">Situação: </p>
                         <select class="ms-1 form-select" id="id_select_situacao">
@@ -105,9 +103,8 @@
 @endforeach
                         </textarea>
                     </div>
-
                 </div>
-                @if ($chamado->foto->count()>0)
+                @if ($chamado->foto->count() > 0)
                 <div class="card m-1 p-1" style="background-color: transparent;">
                     <p>Fotos enviadas</p>
                     <div class="d-flex" style="justify-content: space-between;">

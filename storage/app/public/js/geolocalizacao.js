@@ -33,7 +33,6 @@ function exibirMapa(id) {
     const div_map = document.getElementById('map' + id);
     div_map.classList.add('d-flex');
     div_map.classList.remove('d-none');
-    console.log('ID: ', id)
     const latitude = document.getElementById('id_latitude_value_' + id).getAttribute('value');
     const longitude = document.getElementById('id_longitude_value_' + id).getAttribute('value');
 
