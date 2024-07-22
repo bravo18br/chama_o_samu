@@ -32,7 +32,7 @@
     <div class="background-image"></div>
     <div class="overlay"></div>
 
-    <div class="cartao d-flex flex-column justify-content-center align-items-center">
+    <div class="cartao d-flex flex-column justify-content-center">
         <livewire:layout.navigation />
         @if (isset($header))
         <header class="bg-white dark:bg-gray-800 shadow">

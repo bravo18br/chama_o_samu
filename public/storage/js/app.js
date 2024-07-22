@@ -185,7 +185,7 @@ async function app() {
                     const conteudoDigitado = id_input_anotacao.value;
                     if (conteudoDigitado.trim() !== '') {
                         const dataHoraAtual = new Date().toLocaleString('pt-BR');
-                        const registro = `${dataHoraAtual} - Operador ${userData.name}: ${conteudoDigitado}`;
+                        const registro = `${dataHoraAtual} - ${userData.name}: ${conteudoDigitado}`;
                         id_textarea_anotacao.classList.add('d-flex');
                         id_textarea_anotacao.classList.remove('d-none');
                         id_textarea_anotacao.textContent += registro + '\n';

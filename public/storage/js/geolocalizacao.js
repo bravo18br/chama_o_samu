@@ -36,31 +36,46 @@ function exibirMapa(id) {
     const latitude = document.getElementById('id_latitude_value_' + id).getAttribute('value');
     const longitude = document.getElementById('id_longitude_value_' + id).getAttribute('value');
 
-    if (latitude == '' || latitude == '-999' || longitude == '' || longitude == '-999') {
+    if (latitude === '' || latitude === '-999' || longitude === '' || longitude === '-999') {
         div_map.classList.add('d-none');
         div_map.classList.remove('d-flex');
         return;
     }
 
     const geoloc = `${latitude},${longitude}`;
-    var coords = geoloc.split(',').map(Number);
+    const coords = geoloc.split(',').map(Number);
 
-    // Verificar se o mapa já foi inicializado
-    if (div_map._leaflet_id) {
-        // Se o mapa já foi inicializado, ajustar a visualização
-        var map = div_map._leaflet_map;
-        map.setView(coords, 14);
-        L.marker(coords).addTo(map);
+    const initializeMap = () => {
+        if (div_map._leaflet_id) {
+            // Se o mapa já foi inicializado, ajustar a visualização
+            const map = div_map._leaflet_map;
+            map.setView(coords, 14);
+            L.marker(coords).addTo(map);
+        } else {
+            // Se o mapa ainda não foi inicializado, inicializá-lo
+            const map = L.map('map' + id).setView(coords, 14);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+            L.marker(coords).addTo(map);
+
+            // Guardar uma referência ao mapa no elemento div
+            div_map._leaflet_map = map;
+        }
+    };
+
+    if (typeof L !== 'undefined') {
+        // Leaflet está carregado, inicializar o mapa imediatamente
+        initializeMap();
     } else {
-        // Se o mapa ainda não foi inicializado, inicializá-lo
-        var map = L.map('map' + id).setView(coords, 14);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-        L.marker(coords).addTo(map);
-
-        // Guardar uma referência ao mapa no elemento div
-        div_map._leaflet_map = map;
+        // Esperar até que o Leaflet esteja carregado
+        const interval = setInterval(() => {
+            if (typeof L !== 'undefined') {
+                clearInterval(interval);
+                initializeMap();
+            }
+        }, 5); // Verificar a cada 5 ms
     }
 }
+
 
 
 async function geolocalizacaoReversa(latitude, longitude) {
