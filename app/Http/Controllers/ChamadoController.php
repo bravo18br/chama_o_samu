@@ -8,6 +8,7 @@ use App\Models\Foto;
 use App\Models\Ip;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use IP2LocationLaravel;
 
 use function App\Helpers\salvarLog;
@@ -137,6 +138,7 @@ class ChamadoController extends Controller
                     'nome' => $foto->hashName(),
                     'caminho' => $path,
                 ]);
+                Log::channel('integrado')->info('Foto: '.$path);
             }
         }
         return redirect()->route('monitoramento');
