@@ -46,18 +46,10 @@ Para contribuir com este projeto, siga estas etapas:
 
 Este projeto é licenciado sob a Licença MIT - veja o arquivo [LICENSE.md](LICENSE.md) para detalhes.
 
-## Início básico
+## Início básico Docker
 - gh repo clone bravo18br/chama_o_samu prod_araucaria_chama_o_samu
-
-### REVISANDO ###
-- composer install
-- conferir .env.example
-- php artisan key:generate
-- php artisan migrate:refresh
-- php artisan db:seed
-- php artisan serve
-- os usuários de teste podem ser vistos no arquivo de seed (não usar na versão de produção)
-
-## Deploy
-
-- Docker / Docker-compose
+- Criar o .env
+- docker exec -it prod_araucaria_chama_o_samu /bin/bash
+- tail -f /var/www/html/storage/logs/apache_error.log
+- tail -f /var/www/html/storage/logs/apache_access.log
+- tail -f /var/www/html/storage/logs/integrado.log
