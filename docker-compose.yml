@@ -12,7 +12,7 @@ services:
     ports:
       - "8078:80"
     volumes:
-      - ./app:/var/www/html
+      - ./:/var/www/html
       - ./apache.conf:/etc/apache2/sites-available/000-default.conf
     networks:
       - chama_o_samu
