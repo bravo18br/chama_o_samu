@@ -10,7 +10,8 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use IP2LocationLaravel;
+// use IP2LocationLaravel;
+use Ip2location\IP2LocationLaravel\Facade\IP2LocationLaravel;
 
 use function App\Helpers\salvarLog;
 
@@ -140,8 +141,8 @@ class ChamadoController extends Controller
                     'nome' => $foto->hashName(),
                     'caminho' => $path,
                 ]);
-                Log::channel('integrado')->info('Foto path interno: ' . $path . $foto['nome']);
-                Log::channel('integrado')->info('Foto path public: ' . $url . $foto['nome']);
+                Log::channel('integrado')->info('Foto path interno: ' . $path);
+                Log::channel('integrado')->info('Foto path public: ' . $url);
             }
         }
         return redirect()->route('monitoramento');
