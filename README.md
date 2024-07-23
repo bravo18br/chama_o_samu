@@ -52,3 +52,4 @@ Este projeto é licenciado sob a Licença MIT - veja o arquivo [LICENSE.md](LICE
 - docker exec -it prod_araucaria_chama_o_samu /bin/bash
 - tail -f /var/www/html/storage/logs/apache_error.log
 - tail -f /var/www/html/storage/logs/apache_access.log
+- tail -f /var/www/html/storage/logs/integrado.log
