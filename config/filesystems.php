@@ -12,6 +12,12 @@ return [
             'throw' => false,
         ],
 
+        'foto_ocorrencia' => [
+            'driver' => 'local',
+            'root' => env('APP_URL').'/public/fotos',
+            'throw' => false,
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app'),
