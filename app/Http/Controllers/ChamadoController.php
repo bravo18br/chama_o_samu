@@ -132,7 +132,8 @@ class ChamadoController extends Controller
 
         if ($request->hasFile('fotos')) {
             foreach ($request->file('fotos') as $foto) {
-                $path = $foto->store('public/fotos');
+                // $path = $foto->store('public/fotos');
+                $path = $foto->storeAs('../fotos');
                 Foto::create([
                     'chamado_id' => $chamado->id,
                     'nome' => $foto->hashName(),
