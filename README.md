@@ -47,7 +47,9 @@ Para contribuir com este projeto, siga estas etapas:
 Este projeto é licenciado sob a Licença MIT - veja o arquivo [LICENSE.md](LICENSE.md) para detalhes.
 
 ## Início básico
+- gh repo clone bravo18br/chama_o_samu prod_araucaria_chama_o_samu
 
+### REVISANDO ###
 - composer install
 - conferir .env.example
 - php artisan key:generate
