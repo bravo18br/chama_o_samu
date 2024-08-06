@@ -18,7 +18,7 @@
 
 <body>
     <div class="card m-1">
-        <img src="/storage/images/404.jpg">
+        <img src="/storage/images/404.png">
     </div>
 
     <footer>

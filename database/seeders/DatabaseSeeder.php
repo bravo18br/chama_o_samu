@@ -6,7 +6,7 @@ use App\Models\Cartao;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
-use Tigo\DocumentBr\Cpf; 
+use Tigo\DocumentBr\Cpf;
 
 class DatabaseSeeder extends Seeder
 {
@@ -84,22 +84,22 @@ class DatabaseSeeder extends Seeder
         $total_fakes = 100;
         for ($i = 0; $i < $total_fakes; $i++) {
             $cpf = new Cpf();
-        
+
             // Defina a porcentagem desejada para cada role
             $percentRole1 = 0.02; // 2%
             $percentRole2 = 0.02; // 2%
             $percentRole4 = 0.02; // 2%
             $percentRole3 = 0.94; // 94%
-        
+
             // Calcule o número de usuários para cada role
             $numRole1 = round($percentRole1 * $total_fakes);
             $numRole2 = round($percentRole2 * $total_fakes);
             $numRole4 = round($percentRole4 * $total_fakes);
             $numRole3 = $total_fakes - ($numRole1 + $numRole2 + $numRole4);
-        
+
             // Inicialize o campo 'role' como role3 (a maioria)
             $role = 3;
-        
+
             // Distribua as roles conforme as porcentagens
             if ($i < $numRole1) {
                 $role = 1;
@@ -108,7 +108,7 @@ class DatabaseSeeder extends Seeder
             } elseif ($i < ($numRole1 + $numRole2 + $numRole4)) {
                 $role = 4;
             }
-        
+
             // Crie o usuário fictício
             $fakerUser = [
                 'email_verified_at' => $faker->dateTimeThisDecade,
@@ -124,10 +124,10 @@ class DatabaseSeeder extends Seeder
                 'role' => $role, // Role conforme a distribuição
                 'analfabeto' => $faker->boolean // Valor aleatório para 'analfabeto'
             ];
-        
+
             $users_lista_faker[] = $fakerUser;
         }
-        
+
 
         foreach (array_merge($users_lista_teste, $users_lista_faker) as $user) {
             $existingUser = User::where('cpf', $user['cpf'])->first();
@@ -224,8 +224,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'nivel3',
                 'legenda_user' => 'Afogamento',
                 'legenda_samu' => 'Aguém afogado',
-                'imagem_nome' => 'acidente-afogamento.jpg',
-                'imagem_caminho' => 'public/images/acidente-afogamento.jpg',
+                'imagem_nome' => 'acidente-afogamento.png',
+                'imagem_caminho' => 'public/images/acidente-afogamento.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -233,8 +233,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'nivel3',
                 'legenda_user' => 'Briga',
                 'legenda_samu' => 'Feridos em briga',
-                'imagem_nome' => 'acidente-briga.jpg',
-                'imagem_caminho' => 'public/images/acidente-briga.jpg',
+                'imagem_nome' => 'acidente-briga.png',
+                'imagem_caminho' => 'public/images/acidente-briga.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -242,8 +242,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'nivel3',
                 'legenda_user' => 'Acidente com bicicleta',
                 'legenda_samu' => 'Acidente envolvendo ciclista',
-                'imagem_nome' => 'acidente-carro_bicicleta.jpg',
-                'imagem_caminho' => 'public/images/acidente-carro_bicicleta.jpg',
+                'imagem_nome' => 'acidente-bicicleta.png',
+                'imagem_caminho' => 'public/images/acidente-bicicleta.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -251,8 +251,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'nivel3',
                 'legenda_user' => 'Acidente com moto',
                 'legenda_samu' => 'Acidente envolvendo motociclista',
-                'imagem_nome' => 'acidente-carro_moto.jpg',
-                'imagem_caminho' => 'public/images/acidente-carro_moto.jpg',
+                'imagem_nome' => 'acidente-moto.png',
+                'imagem_caminho' => 'public/images/acidente-moto.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -260,8 +260,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'nivel3',
                 'legenda_user' => 'Pessoa atropelada',
                 'legenda_samu' => 'Alguém foi atropelado',
-                'imagem_nome' => 'acidente-carro_pessoa.jpg',
-                'imagem_caminho' => 'public/images/acidente-carro_pessoa.jpg',
+                'imagem_nome' => 'acidente-atropelamento.png',
+                'imagem_caminho' => 'public/images/acidente-atropelamento.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -269,8 +269,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'nivel3',
                 'legenda_user' => 'Choque elétrico',
                 'legenda_samu' => 'Alguém sofreu choque elétrico',
-                'imagem_nome' => 'acidente-eletrica.jpg',
-                'imagem_caminho' => 'public/images/acidente-eletrica.jpg',
+                'imagem_nome' => 'acidente-choque-eletrico.png',
+                'imagem_caminho' => 'public/images/acidente-choque-eletrico.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -278,8 +278,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'nivel3',
                 'legenda_user' => 'Engasgado na garganta',
                 'legenda_samu' => 'Alguém engasgado com algo',
-                'imagem_nome' => 'acidente-engasgo.jpg',
-                'imagem_caminho' => 'public/images/acidente-engasgo.jpg',
+                'imagem_nome' => 'acidente-engasgo.png',
+                'imagem_caminho' => 'public/images/acidente-engasgo.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -287,8 +287,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'nivel3',
                 'legenda_user' => 'Ferido por fogo ou calor',
                 'legenda_samu' => 'Alguém queimado (fogo ou fonte de calor)',
-                'imagem_nome' => 'acidente-fogo.jpg',
-                'imagem_caminho' => 'public/images/acidente-fogo.jpg',
+                'imagem_nome' => 'acidente-queimadura.png',
+                'imagem_caminho' => 'public/images/acidente-queimadura.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -296,8 +296,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'nivel3',
                 'legenda_user' => 'Ataque coração',
                 'legenda_samu' => 'Alguém em parada cardíaca',
-                'imagem_nome' => 'acidente-coracao.jpg',
-                'imagem_caminho' => 'public/images/acidente-coracao.jpg',
+                'imagem_nome' => 'acidente-ataque-cardiaco.png',
+                'imagem_caminho' => 'public/images/acidente-ataque-cardiaco.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -305,8 +305,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'nivel3',
                 'legenda_user' => 'Acidente por queda',
                 'legenda_samu' => 'Queda em altura',
-                'imagem_nome' => 'acidente-queda.jpg',
-                'imagem_caminho' => 'public/images/acidente-queda.jpg',
+                'imagem_nome' => 'acidente-queda.png',
+                'imagem_caminho' => 'public/images/acidente-queda.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -314,8 +314,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'nivel3',
                 'legenda_user' => 'Intoxicação por químicos',
                 'legenda_samu' => 'Intoxicação por remédios ou produtos químicos',
-                'imagem_nome' => 'acidente-remedios.jpg',
-                'imagem_caminho' => 'public/images/acidente-remedios.jpg',
+                'imagem_nome' => 'acidente-intox-quimica.png',
+                'imagem_caminho' => 'public/images/acidente-intox-quimica.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -323,8 +323,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'nivel3',
                 'legenda_user' => 'Sangramento forte',
                 'legenda_samu' => 'Consigo ver forte sangramento',
-                'imagem_nome' => 'acidente-sangramento_forte.jpg',
-                'imagem_caminho' => 'public/images/acidente-sangramento_forte.jpg',
+                'imagem_nome' => 'acidente-sangramento-forte.png',
+                'imagem_caminho' => 'public/images/acidente-sangramento-forte.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -332,8 +332,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'nivel3',
                 'legenda_user' => 'Sangramento médio',
                 'legenda_samu' => 'Consigo ver sangramento médio',
-                'imagem_nome' => 'acidente-sangramento_medio.jpg',
-                'imagem_caminho' => 'public/images/acidente-sangramento_medio.jpg',
+                'imagem_nome' => 'acidente-sangramento-medio.png',
+                'imagem_caminho' => 'public/images/acidente-sangramento-medio.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -341,8 +341,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'nivel3',
                 'legenda_user' => 'Sangramento fraco',
                 'legenda_samu' => 'Consigo ver sangramento fraco',
-                'imagem_nome' => 'acidente-sangramento_fraco.jpg',
-                'imagem_caminho' => 'public/images/acidente-sangramento_fraco.jpg',
+                'imagem_nome' => 'acidente-sangramento-leve.png',
+                'imagem_caminho' => 'public/images/acidente-sangramento-leve.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -350,8 +350,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'nivel3',
                 'legenda_user' => 'Acidente de trânsito',
                 'legenda_samu' => 'Acidente de trânsito',
-                'imagem_nome' => 'acidente-transito.jpg',
-                'imagem_caminho' => 'public/images/acidente-transito.jpg',
+                'imagem_nome' => 'acidente-transito.png',
+                'imagem_caminho' => 'public/images/acidente-transito.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -359,8 +359,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'nivel3',
                 'legenda_user' => 'Sem sangramento',
                 'legenda_samu' => 'Não vejo sangramento',
-                'imagem_nome' => 'sem-sangramento.jpg',
-                'imagem_caminho' => 'public/images/sem-sangramento.jpg',
+                'imagem_nome' => 'acidente-sem-sangramento.png',
+                'imagem_caminho' => 'public/images/acidente-sem-sangramento.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -368,8 +368,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'nivel3',
                 'legenda_user' => 'Osso quebrado',
                 'legenda_samu' => 'Fratura óssea',
-                'imagem_nome' => 'acidente-fratura.jpg',
-                'imagem_caminho' => 'public/images/acidente-fratura.jpg',
+                'imagem_nome' => 'acidente-fratura-ossea.png',
+                'imagem_caminho' => 'public/images/acidente-fratura-ossea.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
