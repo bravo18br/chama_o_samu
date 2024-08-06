@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 237.31">
+<svg id="Camada_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 237.31">
   <defs>
     <style>
       .cls-1 {
-        fill: #f38222;
-      }
-
-      .cls-1, .cls-2 {
-        stroke-width: 0px;
+        fill: #dd5900;
       }
 
       .cls-2 {
-        fill: #6ad800;
+        fill: #4f9300;
       }
     </style>
   </defs>

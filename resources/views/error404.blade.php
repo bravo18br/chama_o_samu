@@ -17,41 +17,11 @@
 </head>
 
 <body>
-    <div class="card m-1">
-        <img src="/storage/images/404.png">
-    </div>
-
-    <footer>
-        <div class="cartao d-flex">
-            <div class="item-footer">
-                <a target="_blank" href="#">
-                    <img src="{{ asset('/storage/images/email.png') }}" alt="" class="icone_footer">
-                </a>
-                <a target="_blank" href="#">
-                    <p class="texto_footer">emailprefeitura@gmail.com</p>
-                </a>
-            </div>
-            <div class="item-footer">
-                <a target="_blank" href="https://maps.app.goo.gl/cxMaewfPn7s1SjTL9">
-                    <img src="{{ asset('/storage/images/mapa.png') }}" class="icone_footer">
-                </a>
-                <a target="_blank" href="https://maps.app.goo.gl/cxMaewfPn7s1SjTL9">
-                    <p class="texto_footer">Abrir mapa</p>
-                </a>
-            </div>
-            <div class="item-footer">
-                <a target="_blank" href="#">
-                    <img src="{{ asset('/storage/images/telefone.png') }}" class="icone_footer">
-                </a>
-                <a target="_blank" href="#">
-                    <p class="texto_footer">(041) 3614-1400</p>
-                </a>
-            </div>
+    <a target="_blank" href="{{ env('APP_URL') }}">
+        <div class="card m-1">
+            <img src="/storage/images/404.png" alt="404 Image">
         </div>
-        <div class="cartao">
-            <p style="text-align: center;">&copy; 2024 Copyright: Prefeitura Municipal de Araucária - Secretaria Municipal da Ciência, Inovação, Tecnologia e Desenvolvimento</p>
-        </div>
-    </footer>
+    </a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

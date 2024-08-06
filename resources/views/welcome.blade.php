@@ -20,17 +20,16 @@
     <div class="overlay"></div>
     <input id="idUrlsToCache" class="d-none" value="{{ json_encode($urlsToCache) }}">
     <div class="cartao d-flex justify-content-center align-items-center">
-        <!-- <img class="img-fluid w-sm-75 w-md-50 w-lg-25" src="{{ asset('/storage/images/logo-CS-tipo-branco-128.png') }}"> -->
         <img class="img-fluid w-sm-75 w-md-50 w-lg-25" src="{{ asset('/storage/images/logo-CS-tipo-cor-192.png') }}">
     </div>
     <div class="cartao">
         <div class="row m-1">
             <div class="col-sm-6 p-1 d-flex flex-column align-items-center">
-                <img class="img-fluid w-sm-75 w-md-50 w-lg-25" src="{{ asset('/storage/images/surdo-imagem.png') }}" style="border-radius:5px;">
+                <img class="img-fluid w-sm-75 w-md-50 w-lg-25 w-xl-10 w-xxl-5" style="max-width:1000px;" src="{{ asset('/storage/images/surdo-imagem.png') }}" style="border-radius:5px;">
             </div>
             <div class="col-sm-6 p-1 d-flex flex-column align-items-center justify-content-center">
                 <div class="texto_welcome" style="text-align: justify;">
-                    <!-- <a class="btn btn-warning m-1 p-3" href="{{ route('briefing') }}" role="button"><b>BRIEFING (desenvolvedores)</b></a> -->
+                    <a class="btn btn-warning m-1 p-3" href="{{ route('briefing') }}" role="button"><b>BRIEFING (desenvolvedores)</b></a>
                     <p>Esta aplicação foi criada para assegurar o atendimento médico de urgência a pessoas com
                         deficiência auditiva e/ou com incapacidade de fala (afonia) ao Serviço de Atendimento Móvel de
                         Urgência (SAMU).</p>
@@ -96,6 +95,7 @@
     </script>
     <script src="{{ asset('build/assets/app-D2jpX1vH.js') }}" type="module"></script>
     <script type="module" src="{{ asset('/storage/js/vlibras.js') }}"></script>
+    <script type="module" src="{{ asset('/storage/js/git.js') }}"></script>
 </body>
 
 </html>

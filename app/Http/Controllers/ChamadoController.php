@@ -135,14 +135,11 @@ class ChamadoController extends Controller
         if ($request->hasFile('fotos')) {
             foreach ($request->file('fotos') as $foto) {
                 $path = $foto->store('public/fotos', 'public');
-                $url = Storage::url($path);
                 $foto = Foto::create([
                     'chamado_id' => $chamado->id,
                     'nome' => $foto->hashName(),
                     'caminho' => $path,
                 ]);
-                Log::channel('integrado')->info('Foto path interno: ' . $path);
-                Log::channel('integrado')->info('Foto path public: ' . $url);
             }
         }
         return redirect()->route('monitoramento');

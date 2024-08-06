@@ -22,7 +22,7 @@
     <div class="cartao">
         <p class="text-center fw-bold fs-2">Chama o Samu</p>
     </div>
-    <div class="cartao">
+    <div class="cartao flex flex-column align-items-center">
         <a class="btn btn-warning m-1 p-3" href="{{ route('home') }}" role="button"><b>VOLTAR</b></a>
 
         <p class="fw-bold fs-2">Resumo:</p>
@@ -30,8 +30,8 @@
         <p>O objetivo é que eles consigam abrir um chamado de emergência para o SAMU, usando de preferência as imagens.
         </p>
         <p>Abaixo tem um usuário de cada tipo, para experimentar as funções</p>
-        <p>Os relatórios são features extras, estou ajustando ainda...</p>
-        <table class="m-1" style="width: 100%; border-collapse: collapse;">
+        <p>Os <b>relatórios</b> são features extras, estou ajustando ainda... não é requisito do projeto.</p>
+        <table class="m-1" style="border-collapse: collapse;">
             <thead>
                 <tr>
                     <th style="border: 1px solid #000; padding: 8px; text-align: left; background-color: #f2f2f2;">Login
@@ -89,7 +89,7 @@
             <div class="row">
                 <div class="item-footer col-sm-4">
                     <a target="_blank" href="mailto:prefeitura@araucaria.pr.gov.br">
-                        <img src="{{ asset('/storage/images/email.png') }}" alt="" class="icone_footer">
+                        <div class="icone_footer icone_email"></div>
                     </a>
                     <a target="_blank" href="mailto:prefeitura@araucaria.pr.gov.br">
                         <p class="texto_footer">prefeitura@araucaria.pr.gov.br</p>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="item-footer col-sm-4">
                     <a target="_blank" href="https://maps.app.goo.gl/cxMaewfPn7s1SjTL9">
-                        <img src="{{ asset('/storage/images/mapa.png') }}" class="icone_footer">
+                        <div class="icone_footer icone_mapa"></div>
                     </a>
                     <a target="_blank" href="https://maps.app.goo.gl/cxMaewfPn7s1SjTL9">
                         <p class="texto_footer">Abrir mapa</p>
@@ -105,7 +105,7 @@
                 </div>
                 <div class="item-footer col-sm-4">
                     <a href="tel:+554136141400">
-                        <img src="{{ asset('/storage/images/telefone.png') }}" class="icone_footer">
+                        <div class="icone_footer icone_telefone"></div>
                     </a>
                     <a href="tel:+554136141400">
                         <p class="texto_footer">(041) 3614-1400</p>
