@@ -31,14 +31,18 @@ $logout = function (Logout $logout) {
 ?>
 
 <div>
+<div class="d-flex justify-content-center align-items-center">
+            <p>Obrigado por se cadastrar!</p>
+        </div>
     <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Obrigado por se cadastrar! Antes de começar, você poderia verificar seu endereço de e-mail clicando no link que acabamos de enviar para você por e-mail? Se você não recebeu o e-mail, teremos o prazer de enviar outro.') }}
+        {!! nl2br(__('Antes de começar, você precisa clicar no link que enviamos no seu email.
+        Se você não recebeu o e-mail, clique abaixo para enviar outro.')) !!}
     </div>
 
     @if (session('status') == 'verification-link-sent')
-        <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
-            {{ __('Um novo link de verificação foi enviado para o endereço de e-mail que você forneceu durante o registro.') }}
-        </div>
+    <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
+        {{ __('Um novo link de verificação foi enviado para o endereço de e-mail que você forneceu durante o registro.') }}
+    </div>
     @endif
 
     <div class="mt-4 flex items-center justify-between">
