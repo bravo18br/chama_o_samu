@@ -14,7 +14,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('/storage/images/background_araucaria.jpg');
+    background-image: url("/storage/images/background_araucaria.jpg");
     background-size: cover;
     background-position: center;
     z-index: -3;
@@ -63,27 +63,27 @@
 }
 
 .icone_email {
-    background-image: url('/storage/images/email-preto-390px.svg');
+    background-image: url("/storage/images/email-preto-390px.svg");
 }
 
 .icone_email:hover {
-    background-image: url('/storage/images/email-laranja-390px.svg');
+    background-image: url("/storage/images/email-laranja-390px.svg");
 }
 
 .icone_mapa {
-    background-image: url('/storage/images/mapa-preto-390px.svg');
+    background-image: url("/storage/images/mapa-preto-390px.svg");
 }
 
 .icone_mapa:hover {
-    background-image: url('/storage/images/mapa-laranja-390px.svg');
+    background-image: url("/storage/images/mapa-laranja-390px.svg");
 }
 
 .icone_telefone {
-    background-image: url('/storage/images/telefone-preto-390px.svg');
+    background-image: url("/storage/images/telefone-preto-390px.svg");
 }
 
 .icone_telefone:hover {
-    background-image: url('/storage/images/telefone-laranja-390px.svg');
+    background-image: url("/storage/images/telefone-laranja-390px.svg");
 }
 
 .texto_copyright {
@@ -115,7 +115,7 @@
     color: rgb(223, 96, 96);
 }
 
-.legenda_user{
+.legenda_user {
     font-size: 1.2rem;
     margin: 5px;
     font-weight: 900;
@@ -151,7 +151,7 @@
     box-shadow: 0 0 30px rgba(0, 0, 255, 0.5);
 }
 
-.div_cartao input[type="checkbox"]:checked+label {
+.div_cartao input[type="checkbox"]:checked + label {
     border: 2px solid var(--cor-reforco-positivo);
     box-shadow: 0 0 30px var(--cor-reforco-positivo);
     border-radius: 5px;
@@ -197,8 +197,7 @@
     padding-bottom: 3rem;
 }
 
-@media(max-width:700px) {
-
+@media (max-width: 700px) {
     .d-none {
         display: none !important;
     }
@@ -232,9 +231,6 @@
     }
 }
 
-
-
-
 .pulsar img {
     width: 141px;
     height: 143px;
@@ -255,7 +251,7 @@
 
 .pulsar::before,
 .pulsar::after {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     left: -30px;
@@ -268,7 +264,7 @@
 }
 
 .pulsar::after {
-    animation-delay: .5s;
+    animation-delay: 0.5s;
 }
 
 @keyframes animar {
@@ -307,4 +303,44 @@ tr:hover {
 
 .borda_azul {
     border: solid 3px blue;
+}
+
+.image-welcome {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+}
+
+/* Para telas extra pequenas (XS) - max-width: 575px */
+@media (max-width: 575px) {
+    .image-welcome {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+    }
+}
+
+/* Para telas pequenas (SM) - max-width: 767px */
+@media (max-width: 767px) {
+    /* Suas regras de estilo aqui */
+}
+
+/* Para telas médias (MD) - max-width: 991px */
+@media (max-width: 991px) {
+    /* Suas regras de estilo aqui */
+}
+
+/* Para telas grandes (LG) - max-width: 1199px */
+@media (max-width: 1199px) {
+    /* Suas regras de estilo aqui */
+}
+
+/* Para telas extra grandes (XL) - max-width: 1399px */
+@media (max-width: 1399px) {
+    /* Suas regras de estilo aqui */
+}
+
+/* Para telas extra extra grandes (XXL) - max-width: 1599px */
+@media (min-width: 1400px) {
+    /* Suas regras de estilo aqui */
 }

@@ -7,137 +7,12 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Tigo\DocumentBr\Cpf;
+use Illuminate\Support\Facades\App;
 
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $users_lista_teste = [[
-            'email_verified_at' => now(),
-            'name' => 'SUPER Admin',
-            'email' => 'super_admin@gmail.com',
-            'password' => bcrypt('12345678'),
-            'cpf' => '89170186022',
-            'cep' => '83709150',
-            'rua' => 'Carlos Vicente Zapxon',
-            'numero' => '1300',
-            'complemento' => 'casa23',
-            'celular' => '41984191656',
-            'role' => 1,
-            'analfabeto' => 0
-        ], [
-            'email_verified_at' => now(),
-            'name' => 'Operador SAMU',
-            'email' => 'operador_samu@gmail.com',
-            'password' => bcrypt('12345678'),
-            'cpf' => '39096471032',
-            'cep' => '83709150',
-            'rua' => 'Carlos Vicente Zapxon',
-            'numero' => '1300',
-            'complemento' => 'casa23',
-            'celular' => '41984191656',
-            'role' => 2,
-            'analfabeto' => 0
-        ], [
-            'email_verified_at' => now(),
-            'name' => 'USER ALFAbetizado',
-            'email' => 'user_alfa@gmail.com',
-            'password' => bcrypt('12345678'),
-            'cpf' => '75637120030',
-            'cep' => '83709150',
-            'rua' => 'Carlos Vicente Zapxon',
-            'numero' => '1300',
-            'complemento' => 'casa23',
-            'celular' => '41984191656',
-            'role' => 3,
-            'analfabeto' => 0
-        ], [
-            'email_verified_at' => now(),
-            'name' => 'USER ANALFAbeto',
-            'email' => 'user_analfa@gmail.com',
-            'password' => bcrypt('12345678'),
-            'cpf' => '32637120030',
-            'cep' => '83709150',
-            'rua' => 'Carlos Vicente Zapxon',
-            'numero' => '1300',
-            'complemento' => 'casa23',
-            'celular' => '41984191656',
-            'role' => 3,
-            'analfabeto' => 1
-        ], [
-            'email_verified_at' => now(),
-            'name' => 'SAMU Admin',
-            'email' => 'samu_admin@gmail.com',
-            'password' => bcrypt('12345678'),
-            'cpf' => '39096471992',
-            'cep' => '83709150',
-            'rua' => 'Carlos Vicente Zapxon',
-            'numero' => '1300',
-            'complemento' => 'casa23',
-            'celular' => '41984191656',
-            'role' => 4,
-            'analfabeto' => 0
-        ]];
-
-        $faker = Faker::create();
-        $users_lista_faker = [];
-        $total_fakes = 100;
-        for ($i = 0; $i < $total_fakes; $i++) {
-            $cpf = new Cpf();
-
-            // Defina a porcentagem desejada para cada role
-            $percentRole1 = 0.02; // 2%
-            $percentRole2 = 0.02; // 2%
-            $percentRole4 = 0.02; // 2%
-            $percentRole3 = 0.94; // 94%
-
-            // Calcule o número de usuários para cada role
-            $numRole1 = round($percentRole1 * $total_fakes);
-            $numRole2 = round($percentRole2 * $total_fakes);
-            $numRole4 = round($percentRole4 * $total_fakes);
-            $numRole3 = $total_fakes - ($numRole1 + $numRole2 + $numRole4);
-
-            // Inicialize o campo 'role' como role3 (a maioria)
-            $role = 3;
-
-            // Distribua as roles conforme as porcentagens
-            if ($i < $numRole1) {
-                $role = 1;
-            } elseif ($i < ($numRole1 + $numRole2)) {
-                $role = 2;
-            } elseif ($i < ($numRole1 + $numRole2 + $numRole4)) {
-                $role = 4;
-            }
-
-            // Crie o usuário fictício
-            $fakerUser = [
-                'email_verified_at' => $faker->dateTimeThisDecade,
-                'name' => $faker->name,
-                'email' => $faker->unique()->safeEmail,
-                'password' => bcrypt('password'), // Pode gerar uma senha aleatória se preferir
-                'cpf' => $cpf->generate(), // CPF fictício
-                'cep' => $faker->numerify('837#####'), // CEP fictício
-                'rua' => $faker->streetName, // Rua fictícia
-                'numero' => $faker->buildingNumber, // Número do endereço fictício
-                'complemento' => $faker->secondaryAddress, // Complemento fictício do endereço
-                'celular' => $faker->numerify('419########'), // Número de celular fictício
-                'role' => $role, // Role conforme a distribuição
-                'analfabeto' => $faker->boolean // Valor aleatório para 'analfabeto'
-            ];
-
-            $users_lista_faker[] = $fakerUser;
-        }
-
-
-        foreach (array_merge($users_lista_teste, $users_lista_faker) as $user) {
-            $existingUser = User::where('cpf', $user['cpf'])->first();
-            if (!$existingUser) {
-                User::create($user);
-            } else {
-                $existingUser->update($user);
-            }
-        }
-
         $cartoes_lista = [
             [
                 'nivel' => 'voltar',
@@ -179,8 +54,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'nivel1',
                 'legenda_user' => 'Emergência na rua',
                 'legenda_samu' => 'É uma emergência na rua',
-                'imagem_nome' => 'paisagem-rua.jpg',
-                'imagem_caminho' => 'public/images/paisagem-rua.jpg',
+                'imagem_nome' => 'atendimento-rua-3.jpg',
+                'imagem_caminho' => 'public/images/atendimento-rua-3.jpg',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -188,8 +63,8 @@ class DatabaseSeeder extends Seeder
                 'nivel' => 'nivel1',
                 'legenda_user' => 'Emergência em casa',
                 'legenda_samu' => 'É uma emergência em casa',
-                'imagem_nome' => 'paisagem-casa.jpg',
-                'imagem_caminho' => 'public/images/paisagem-casa.jpg',
+                'imagem_nome' => 'atendimento-casa-5.png',
+                'imagem_caminho' => 'public/images/atendimento-casa-5.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -399,6 +274,182 @@ class DatabaseSeeder extends Seeder
                 Cartao::create($cartao);
             } else {
                 $existingCartao->update($cartao);
+            }
+        }
+
+        // SEEDER CASO AMBIENTE DE DESENVOLVIMENTO
+        if (App::environment('local')) {
+            $users_lista_teste = [[
+                'email_verified_at' => now(),
+                'name' => 'SUPER Admin',
+                'email' => 'super_admin@gmail.com',
+                'password' => bcrypt('12345678'),
+                'cpf' => '89170186022',
+                'cep' => '83709150',
+                'rua' => 'Carlos Vicente Zapxon',
+                'numero' => '1300',
+                'complemento' => 'casa23',
+                'celular' => '41984191656',
+                'role' => 1,
+                'analfabeto' => 0
+            ], [
+                'email_verified_at' => now(),
+                'name' => 'Operador SAMU',
+                'email' => 'operador_samu@gmail.com',
+                'password' => bcrypt('12345678'),
+                'cpf' => '39096471032',
+                'cep' => '83709150',
+                'rua' => 'Carlos Vicente Zapxon',
+                'numero' => '1300',
+                'complemento' => 'casa23',
+                'celular' => '41984191656',
+                'role' => 2,
+                'analfabeto' => 0
+            ], [
+                'email_verified_at' => now(),
+                'name' => 'USER ALFAbetizado',
+                'email' => 'user_alfa@gmail.com',
+                'password' => bcrypt('12345678'),
+                'cpf' => '75637120030',
+                'cep' => '83709150',
+                'rua' => 'Carlos Vicente Zapxon',
+                'numero' => '1300',
+                'complemento' => 'casa23',
+                'celular' => '41984191656',
+                'role' => 3,
+                'analfabeto' => 0
+            ], [
+                'email_verified_at' => now(),
+                'name' => 'USER ANALFAbeto',
+                'email' => 'user_analfa@gmail.com',
+                'password' => bcrypt('12345678'),
+                'cpf' => '32637120030',
+                'cep' => '83709150',
+                'rua' => 'Carlos Vicente Zapxon',
+                'numero' => '1300',
+                'complemento' => 'casa23',
+                'celular' => '41984191656',
+                'role' => 3,
+                'analfabeto' => 1
+            ], [
+                'email_verified_at' => now(),
+                'name' => 'SAMU Admin',
+                'email' => 'samu_admin@gmail.com',
+                'password' => bcrypt('12345678'),
+                'cpf' => '39096471992',
+                'cep' => '83709150',
+                'rua' => 'Carlos Vicente Zapxon',
+                'numero' => '1300',
+                'complemento' => 'casa23',
+                'celular' => '41984191656',
+                'role' => 4,
+                'analfabeto' => 0
+            ]];
+
+            $faker = Faker::create();
+            $users_lista_faker = [];
+            $total_fakes = 100;
+            for ($i = 0; $i < $total_fakes; $i++) {
+                $cpf = new Cpf();
+
+                // Defina a porcentagem desejada para cada role
+                $percentRole1 = 0.02; // 2%
+                $percentRole2 = 0.02; // 2%
+                $percentRole4 = 0.02; // 2%
+                $percentRole3 = 0.94; // 94%
+
+                // Calcule o número de usuários para cada role
+                $numRole1 = round($percentRole1 * $total_fakes);
+                $numRole2 = round($percentRole2 * $total_fakes);
+                $numRole4 = round($percentRole4 * $total_fakes);
+                $numRole3 = $total_fakes - ($numRole1 + $numRole2 + $numRole4);
+
+                // Inicialize o campo 'role' como role3 (a maioria)
+                $role = 3;
+
+                // Distribua as roles conforme as porcentagens
+                if ($i < $numRole1) {
+                    $role = 1;
+                } elseif ($i < ($numRole1 + $numRole2)) {
+                    $role = 2;
+                } elseif ($i < ($numRole1 + $numRole2 + $numRole4)) {
+                    $role = 4;
+                }
+
+                // Crie o usuário fictício
+                $fakerUser = [
+                    'email_verified_at' => $faker->dateTimeThisDecade,
+                    'name' => $faker->name,
+                    'email' => $faker->unique()->safeEmail,
+                    'password' => bcrypt('password'), // Pode gerar uma senha aleatória se preferir
+                    'cpf' => $cpf->generate(), // CPF fictício
+                    'cep' => $faker->numerify('837#####'), // CEP fictício
+                    'rua' => $faker->streetName, // Rua fictícia
+                    'numero' => $faker->buildingNumber, // Número do endereço fictício
+                    'complemento' => $faker->secondaryAddress, // Complemento fictício do endereço
+                    'celular' => $faker->numerify('419########'), // Número de celular fictício
+                    'role' => $role, // Role conforme a distribuição
+                    'analfabeto' => $faker->boolean // Valor aleatório para 'analfabeto'
+                ];
+
+                $users_lista_faker[] = $fakerUser;
+            }
+
+
+            foreach (array_merge($users_lista_teste, $users_lista_faker) as $user) {
+                $existingUser = User::where('cpf', $user['cpf'])->first();
+                if (!$existingUser) {
+                    User::create($user);
+                } else {
+                    $existingUser->update($user);
+                }
+            }
+        }
+
+        // SEEDER CASO AMBIENTE DE PRODUÇÃO
+        if (App::environment('prod')) {
+
+            $users_lista = [[
+                'email_verified_at' => now(),
+                'name' => 'Chris Klein',
+                'email' => 'bravo18br@gmail.com',
+                'password' => bcrypt('12345678'),
+                'cpf' => '04333747996',
+                'cep' => '83709150',
+                'rua' => 'Carlos Vicente Zapxon',
+                'numero' => '1300',
+                'complemento' => 'casa23',
+                'celular' => '41984191656',
+                'role' => 1,
+                'analfabeto' => 0
+            ]];
+
+            if (env('SUPER_ADM_USER') && env('SUPER_ADM_PASS')) {
+                $super_user = [
+                    'email_verified_at' => now(),
+                    'name' => 'SMCIT SUPER Admin',
+                    'email' => env('SUPER_ADM_USER'),
+                    'password' => bcrypt(env('SUPER_ADM_PASS')),
+                    'cpf' => '89170186022',
+                    'cep' => '83709150',
+                    'rua' => 'Rua Número Zero',
+                    'numero' => '9999',
+                    'complemento' => '999',
+                    'celular' => '41999999999',
+                    'role' => 1,
+                    'analfabeto' => 0
+                ];
+                $users_lista[] = $super_user;
+            };
+
+
+            foreach ($users_lista as $user) {
+                $existingUser = User::where('cpf', $user['cpf'])->first();
+                if (!$existingUser) {
+                    User::create($user);
+                } else {
+                    $existingUser->update($user);
+                }
             }
         }
     }

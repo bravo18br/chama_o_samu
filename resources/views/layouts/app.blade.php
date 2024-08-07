@@ -32,6 +32,21 @@
     <div class="background-image"></div>
     <div class="overlay"></div>
 
+    @env('local')
+    <div class="cartao" style="color: white; font-size: 25px; position: fixed; top: 10px; right: 10px; z-index: 1000; background: rgba(0, 0, 0, 0.7); padding: 10px; border-radius: 5px;">
+        <p class="d-block d-sm-none">TELA XS - max-width: 575px</p>
+        <p class="d-none d-sm-block d-md-none">TELA SM - max-width: 767px</p>
+        <p class="d-none d-md-block d-lg-none">TELA MD - max-width: 991px</p>
+        <p class="d-none d-lg-block d-xl-none">TELA LG - max-width: 1199px</p>
+        <p class="d-none d-xl-block d-xxl-none">TELA XL - max-width: 1399px</p>
+        <p class="d-none d-xxl-block">TELA XXL - min-width: 1400px</p>
+    </div>
+    <div class="cartao" style="color: white; font-size: 30px; position: fixed; top: 10px; left: 10px; z-index: 1000; background: rgba(0, 0, 0, 0.7); padding: 10px; border-radius: 5px;">
+        <p>MODO DE DESENVOLVIMENTO</p>
+        <p>APP_ENV=local</p>
+    </div>
+    @endenv
+
     <div class="cartao d-flex flex-column justify-content-center">
         <livewire:layout.navigation />
         @if (isset($header))

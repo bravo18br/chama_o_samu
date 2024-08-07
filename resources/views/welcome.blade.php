@@ -16,20 +16,39 @@
 </head>
 
 <body>
+    @env('local')
+    <div class="cartao" style="color: white; font-size: 25px; position: fixed; top: 10px; right: 10px; z-index: 1000; background: rgba(0, 0, 0, 0.7); padding: 10px; border-radius: 5px;">
+        <p class="d-block d-sm-none">TELA XS - max-width: 575px</p>
+        <p class="d-none d-sm-block d-md-none">TELA SM - max-width: 767px</p>
+        <p class="d-none d-md-block d-lg-none">TELA MD - max-width: 991px</p>
+        <p class="d-none d-lg-block d-xl-none">TELA LG - max-width: 1199px</p>
+        <p class="d-none d-xl-block d-xxl-none">TELA XL - max-width: 1399px</p>
+        <p class="d-none d-xxl-block">TELA XXL - min-width: 1400px</p>
+    </div>
+    <div class="cartao" style="color: white; font-size: 30px; position: fixed; top: 10px; left: 10px; z-index: 1000; background: rgba(0, 0, 0, 0.7); padding: 10px; border-radius: 5px;">
+        <p>MODO DE DESENVOLVIMENTO</p>
+        <p>APP_ENV=local</p>
+    </div>
+    @endenv
     <div class="background-image"></div>
     <div class="overlay"></div>
     <input id="idUrlsToCache" class="d-none" value="{{ json_encode($urlsToCache) }}">
     <div class="cartao d-flex justify-content-center align-items-center">
         <img class="img-fluid w-sm-75 w-md-50 w-lg-25" src="{{ asset('/storage/images/logo-CS-tipo-cor-192.png') }}">
     </div>
+
     <div class="cartao">
         <div class="row m-1">
             <div class="col-sm-6 p-1 d-flex flex-column align-items-center">
-                <img class="img-fluid w-sm-75 w-md-50 w-lg-25 w-xl-10 w-xxl-5" style="max-width:1000px;" src="{{ asset('/storage/images/surdo-imagem.png') }}" style="border-radius:5px;">
+                <img class="image-welcome" src="{{ asset('/storage/images/surdo-imagem.png') }}">
             </div>
             <div class="col-sm-6 p-1 d-flex flex-column align-items-center justify-content-center">
                 <div class="texto_welcome" style="text-align: justify;">
-                    <a class="btn btn-warning m-1 p-3" href="{{ route('briefing') }}" role="button"><b>BRIEFING (desenvolvedores)</b></a>
+                    @env('local')
+                    <a class="btn btn-warning m-1 p-3" href="{{ route('briefing') }}" role="button">
+                        <b>BRIEFING (desenvolvedores)</b>
+                    </a>
+                    @endenv
                     <p>Esta aplicação foi criada para assegurar o atendimento médico de urgência a pessoas com
                         deficiência auditiva e/ou com incapacidade de fala (afonia) ao Serviço de Atendimento Móvel de
                         Urgência (SAMU).</p>
@@ -44,13 +63,10 @@
         </div>
         <div class="row mt-3">
             <div class="col-sm-6 p-1 d-flex flex-column align-items-center">
-
             </div>
-            <div class="col-sm-6 p-1 d-flex flex-column align-items-center">
-                <div>
-                    <a class="btn-cor-principal-1" href="{{ route('login') }}" role="button"><b>Entrar</b></a>
-                    <a class="btn-cor-principal-1" href="{{ route('register') }}" role="button"><b>Registrar</b></a>
-                </div>
+            <div class="col-sm-6 p-1 d-flex justify-content-center">
+                <a class="btn-cor-principal-1 btn-entrar" href="{{ route('login') }}" role="button"><b>Entrar</b></a>
+                <a class="btn-cor-principal-1 btn-registrar" href="{{ route('register') }}" role="button"><b>Registrar</b></a>
             </div>
         </div>
     </div>
