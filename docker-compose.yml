@@ -2,7 +2,7 @@ services:
   app:
     build: .
     container_name: prod_araucaria_chama_o_samu
-    image: chama_o_samu:alpha
+    image: chama_o_samu:prod
     restart: always
     working_dir: /var/www/html
     cpus: "1.0"
