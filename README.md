@@ -41,13 +41,30 @@ Este projeto é licenciado sob a Licença MIT - veja o arquivo [LICENSE.md](LICE
 - storage/app/public/fotos (as fotos que os usuários enviaram nos chamados)
 - storage/logs (os logs de serviço)
 
-## Início básico Docker
+## Início básico LOCAL
 - gh repo clone bravo18br/chama_o_samu prod_araucaria_chama_o_samu
 - Criar o .env (ver o .env.example na base do projeto)
     - Ajustar APP_ENV para local ou prod e APP_DEBUG para true ou false
-    - Ajustar APP_URL (http://ip do servidor:porta do docker OU http://127.0.0.1:8000 se estiver fazendo testes pelo php artisan serve)
+    - Ajustar APP_URL (http://127.0.0.1:8000)
     - Setar MAIL_USERNAME e MAIL_PASSWORD pois o login de usuários depende dessas credenciais (ver abaixo detalhes de como conseguir)
     - Setar SUPER_ADM_USER e SUPER_ADM_PASS (será o superuser para manutenção/acesso god mode). Esse usuário é criado apenas em modo "prod".
+- composer install
+- php artisan migrate --force
+- php artisan db:seed --force
+- php artisan storage:link
+- php artisan view:clear
+- php artisan config:clear
+- php artisan key:generate --force
+- php artisan serve
+
+## Início básico DOCKER
+- gh repo clone bravo18br/chama_o_samu prod_araucaria_chama_o_samu
+- Criar o .env (ver o .env.example na base do projeto)
+    - Ajustar APP_ENV para local ou prod e APP_DEBUG para true ou false
+    - Ajustar APP_URL (http://ip_do_servidor:porta_do_docker)
+    - Setar MAIL_USERNAME e MAIL_PASSWORD pois o login de usuários depende dessas credenciais (ver abaixo detalhes de como conseguir)
+    - Setar SUPER_ADM_USER e SUPER_ADM_PASS (será o superuser para manutenção/acesso god mode). Esse usuário é criado apenas em modo "prod".
+- Se APP_ENV=prod descomentar a linha 37 (php artisan config:cache) em entrypoint.sh na raiz do projeto
 - docker compose up -d --build (vai iniciar os serviços, após uns 2min já responde no navegador)
 - docker exec -it prod_araucaria_chama_o_samu /bin/bash (se precisar entrar na máquina)
 - os logs ficam em /var/www/html/storage/logs
