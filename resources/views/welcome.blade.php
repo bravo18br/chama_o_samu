@@ -113,7 +113,7 @@
     <script type="module" src="{{ asset('/storage/js/vlibras.js') }}"></script>
     <script>
         var appEnv = "{{ env('APP_ENV') }}";
-        var appDebug = "{{ env('APP_DEBUG') }}"
+        var appDebug = "{{ env('APP_DEBUG') }}";
     </script>
     <script type="module" src="{{ asset('/storage/js/git.js') }}"></script>
 </body>
