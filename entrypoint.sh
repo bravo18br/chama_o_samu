@@ -7,8 +7,8 @@ source /root/.env
 mv /root/.env /var/www/html/.env
 
 # Verifica se o arquivo de database já existe antes de criar um novo
-if [ ! -f /var/www/html/database/samu-acessibilidade.db ]; then
-  touch /var/www/html/database/samu-acessibilidade.db
+if [ ! -f /var/www/html/database/database.sqlite ]; then
+  touch /var/www/html/database/database.sqlite
 fi
 
 # Define as permissões corretas
@@ -17,12 +17,14 @@ chown -R www-data:www-data /var/www/html/storage
 chown -R www-data:www-data /var/www/html/database
 chown -R www-data:www-data /var/www/html/storage/logs
 chown -R www-data:www-data /var/www/html/bootstrap/cache
+chown -R www-data:www-data /var/www/html/database/database.sqlite
 
 chmod -R 775 /var/www/html
 chmod -R 775 /var/www/html/storage
 chmod -R 775 /var/www/html/database
 chmod -R 775 /var/www/html/storage/logs
 chmod -R 775 /var/www/html/bootstrap/cache
+chmod -R 775 /var/www/html/database/database.sqlite
 
 # Atualizar dependências do projeto
 cd /var/www/html
@@ -34,7 +36,7 @@ php artisan db:seed --force
 php artisan storage:link
 php artisan view:clear
 php artisan config:clear
-# php artisan config:cache // ativar isso em produção apenas
+php artisan config:cache
 php artisan key:generate --force
 
 # Executa o comando original do contêiner
