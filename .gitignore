@@ -1,3 +1,4 @@
 .env
 /vendor
 *.db
+/storage/app/public/fotos
