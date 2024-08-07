@@ -4,7 +4,7 @@ use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Log;
 use function Livewire\Volt\layout;
 use function Livewire\Volt\state;
 
@@ -20,6 +20,7 @@ state([
 ]);
 
 $register = function () {
+    $this->cpf = preg_replace('/\D/', '', $this->cpf);
     $validated = $this->validate([
         'name' => 'required|string|max:255',
         'email' => 'required|string|lowercase|email|max:255|unique:users',
@@ -71,9 +72,7 @@ $register = function () {
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Senha')" />
-
             <x-text-input wire:model="password" id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
@@ -88,6 +87,7 @@ $register = function () {
         <div class="mt-4" x-data>
             <x-input-label for="cpf" :value="__('CPF')" />
             <x-text-input wire:model="cpf" id="cpf" class="block mt-1 w-full" type="text" name="cpf" required autofocus autocomplete="cpf" x-mask="999.999.999-99" placeholder="999.999.999-99" />
+            <x-input-error :messages="$errors->get('cpf')" class="mt-2" />
         </div>
 
         <!-- ALFABETIZADO -->
