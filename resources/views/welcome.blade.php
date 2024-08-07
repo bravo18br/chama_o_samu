@@ -111,10 +111,6 @@
     </script>
     <script src="{{ asset('build/assets/app-D2jpX1vH.js') }}" type="module"></script>
     <script type="module" src="{{ asset('/storage/js/vlibras.js') }}"></script>
-    <script>
-        var appEnv = "{{ env('APP_ENV') }}";
-        var appDebug = "{{ env('APP_DEBUG') }}";
-    </script>
     <script type="module" src="{{ asset('/storage/js/git.js') }}"></script>
 </body>
 
