@@ -3,6 +3,8 @@
 use App\Livewire\Actions\Logout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Models\User;
+
 
 use function Livewire\Volt\layout;
 
