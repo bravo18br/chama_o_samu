@@ -28,25 +28,25 @@ $updateProfileInformation = function () {
     $this->cep = str_replace(['.', '-'], '', $this->cep);
 
     $validated = $this->validate([
-        'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
-        'cep' => ['nullable', 'numeric', 'digits:8'],
-        'rua' => ['nullable', 'max:255'],
-        'numero' => ['nullable', 'max:255'],
-        'complemento' => ['nullable', 'max:255'],
-        'celular' => ['nullable', 'regex:/^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/'],
         'analfabeto' => ['numeric', 'digits:1'],
-        'cpf' => ['numeric', 'digits:11']
+        'celular' => ['nullable', 'regex:/^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/'],
+        'cep' => ['nullable', 'numeric', 'digits:8'],
+        'complemento' => ['nullable', 'max:255'],
+        'cpf' => ['numeric', 'digits:11'],
+        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
+        'name' => ['required', 'string', 'max:255'],
+        'numero' => ['nullable', 'max:255'],
+        'rua' => ['nullable', 'max:255'],
     ], [
-        'name.required' => 'O campo nome é obrigatório.',
-        'email.required' => 'O campo email é obrigatório.',
-        'cep.numeric' => 'O CEP deve ter apenas números.',
-        'cep.digits' => 'O CEP deve ter 8 dígitos.',
-        'celular.regex' => 'O celular deve ser no formato: (41) 94545-4545',
         'analfabeto.numeric' => '0 para Não e 1 para Sim',
         'analfabeto.digits' => '0 para Não e 1 para Sim',
+        'celular.regex' => 'O celular deve ser no formato: (41) 94545-4545',
+        'cep.numeric' => 'O CEP deve ter apenas números.',
+        'cep.digits' => 'O CEP deve ter 8 dígitos.',
         'cpf.numeric' => 'O CPF deve ter apenas números.',
-        'cpf.digits' => 'O CPF deve ter 11 dígitos.'
+        'cpf.digits' => 'O CPF deve ter 11 dígitos.',
+        'email.required' => 'O campo email é obrigatório.',
+        'name.required' => 'O campo nome é obrigatório.',
     ]);
 
     if ($validated !== null) {
@@ -158,7 +158,7 @@ $sendVerification = function () {
         <x-input-error class="mt-2" :messages="$errors->get('analfabeto')" />
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Enviar') }}</x-primary-button>
+            <x-primary-button>{{ __('Atualizar') }}</x-primary-button>
 
             <x-action-message class="me-3" on="profile-updated">
                 {{ __('Salvo!') }}
