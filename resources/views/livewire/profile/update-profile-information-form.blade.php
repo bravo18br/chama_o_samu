@@ -3,6 +3,7 @@
 use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
 
@@ -23,6 +24,8 @@ state([
 $updateProfileInformation = function () {
     $user = Auth::user();
     $validated = null;
+
+    Log::channel('integrado')->info('update - $this->rua: ' . $this->rua);
 
     $this->cpf = str_replace(['.', '-'], '', $this->cpf);
     $this->cep = str_replace(['.', '-'], '', $this->cep);
@@ -48,6 +51,8 @@ $updateProfileInformation = function () {
         'email.required' => 'O campo email é obrigatório.',
         'name.required' => 'O campo nome é obrigatório.',
     ]);
+
+
 
     if ($validated !== null) {
         $user->fill($validated);
@@ -125,7 +130,7 @@ $sendVerification = function () {
         </div>
         <div x-data>
             <x-input-label for="cep" :value="__('CEP')" />
-            <x-text-input wire:model="cep" id="cep" name="cep" type="text" class="mt-1 block w-full" autofocus autocomplete="cep" x-mask="99.999-999" placeholder="99.999-999"/>
+            <x-text-input wire:model="cep" id="cep" name="cep" type="text" class="mt-1 block w-full" autofocus autocomplete="cep" x-mask="99.999-999" placeholder="99.999-999" />
             <x-input-error class="mt-2" :messages="$errors->get('cep')" />
         </div>
         <div>
@@ -145,7 +150,7 @@ $sendVerification = function () {
         </div>
         <div x-data>
             <x-input-label for="celular" :value="__('Celular')" />
-            <x-text-input wire:model="celular" id="celular" name="celular" type="text" class="mt-1 block w-full" autofocus autocomplete="celular" x-mask="(99) 99999-9999" placeholder="(99) 99999-9999"/>
+            <x-text-input wire:model="celular" id="celular" name="celular" type="text" class="mt-1 block w-full" autofocus autocomplete="celular" x-mask="(99) 99999-9999" placeholder="(99) 99999-9999" />
             <x-input-error class="mt-2" :messages="$errors->get('celular')" />
         </div>
 
