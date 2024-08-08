@@ -16,22 +16,8 @@
 </head>
 
 <body>
-    @env('local')
-    <div class="cartao" style="color: white; font-size: 25px; position: fixed; top: 10px; right: 10px; z-index: 1000; background: rgba(0, 0, 0, 0.7); padding: 10px; border-radius: 5px;">
-        <p class="d-block d-sm-none">TELA XS - max-width: 575px</p>
-        <p class="d-none d-sm-block d-md-none">TELA SM - max-width: 767px</p>
-        <p class="d-none d-md-block d-lg-none">TELA MD - max-width: 991px</p>
-        <p class="d-none d-lg-block d-xl-none">TELA LG - max-width: 1199px</p>
-        <p class="d-none d-xl-block d-xxl-none">TELA XL - max-width: 1399px</p>
-        <p class="d-none d-xxl-block">TELA XXL - min-width: 1400px</p>
-    </div>
-    <div class="cartao" style="color: white; font-size: 30px; position: fixed; top: 10px; left: 10px; z-index: 1000; background: rgba(0, 0, 0, 0.7); padding: 10px; border-radius: 5px;">
-        <p>MODO DE DESENVOLVIMENTO</p>
-        <p>APP_ENV=local</p>
-    </div>
-    @endenv
-    <div class="background-image"></div>
-    <div class="overlay"></div>
+    <x-development-mode-alert />
+    <x-background-image />
     <input id="idUrlsToCache" class="d-none" value="{{ json_encode($urlsToCache) }}">
     <div class="cartao d-flex justify-content-center align-items-center">
         <img class="img-fluid w-sm-75 w-md-50 w-lg-25" src="{{ asset('/storage/images/logo-CS-tipo-cor-192.png') }}">
@@ -51,7 +37,7 @@
                     @endenv
                     <p>Esta aplicação foi criada para assegurar o atendimento médico de urgência a pessoas com
                         deficiência auditiva e/ou com incapacidade de fala (afonia) ao Serviço de Atendimento Móvel de
-                        Urgência (SAMU).</p>
+                        Urgência (SAMU) na cidade de Araucária-PR.</p>
                     <p>Conforme <a href="https://araucaria.atende.net/diariooficial/edicao/2045/texto/203101" style="color: blue; text-decoration: underline;" target="_blank">Lei Municipal nº 4.375 de
                             15 de março de 2024</a>.</p>
                     <p>Para utilizar o aplicativo e garantir atendimento rápido e eficiente, clique no botão

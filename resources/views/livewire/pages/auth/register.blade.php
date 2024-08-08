@@ -107,7 +107,7 @@ $register = function () {
         <!-- CEP -->
         <div class="mt-4" x-data>
             <x-input-label for="cep" :value="__('CEP')" />
-            <x-text-input wire:model="cep" id="cep" name="cep" type="text" class="mt-1 block w-full" autofocus autocomplete="cep" x-mask="99.999-999" placeholder="99.999-999"/>
+            <x-text-input wire:model="cep" id="cep" name="cep" type="text" class="mt-1 block w-full" autofocus autocomplete="cep" x-mask="99.999-999" placeholder="99.999-999" />
             <x-input-error :messages="$errors->get('cep')" class="mt-2" />
         </div>
 
@@ -135,7 +135,7 @@ $register = function () {
         <!-- CELULAR -->
         <div class="mt-4" x-data>
             <x-input-label for="celular" :value="__('Celular')" />
-            <x-text-input wire:model="celular" id="celular" name="celular" type="text" class="mt-1 block w-full" autofocus autocomplete="celular" x-mask="(99) 99999-9999" placeholder="(99) 99999-9999"/>
+            <x-text-input wire:model="celular" id="celular" name="celular" type="text" class="mt-1 block w-full" autofocus autocomplete="celular" x-mask="(99) 99999-9999" placeholder="(99) 99999-9999" />
             <x-input-error :messages="$errors->get('celular')" class="mt-2" />
         </div>
 
@@ -164,3 +164,5 @@ $register = function () {
         </div>
     </form>
 </div>
+
+<x-busca-via-c-e-p />

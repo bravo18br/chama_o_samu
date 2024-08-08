@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ asset('/storage/css/style.css') }}" rel="stylesheet" type="text/css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Chama o Samu</title>
 
     <!-- Fonts -->
@@ -18,7 +17,8 @@
 </head>
 
 <body>
-    <div class="background-image"></div>
+    <x-development-mode-alert />
+    <x-background-image />
     <div class="cartao">
         <p class="text-center fw-bold fs-2">Chama o Samu</p>
     </div>
@@ -118,8 +118,7 @@
         <p class="text-center">&copy; 2024 Copyright: Prefeitura Municipal de Araucária - Secretaria Municipal da
             Ciência, Inovação, Tecnologia e Desenvolvimento</p>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <script type="module" src="{{ asset('/storage/js/vlibras.js') }}"></script>
 </body>
