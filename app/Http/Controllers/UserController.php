@@ -21,9 +21,9 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $dadosRequest = $request->all();
-        $dadosRequest['cpf'] = str_replace(['.', '-'], '', $dadosRequest['cpf']);
-        $dadosRequest['cep'] = str_replace(['.', '-'], '', $dadosRequest['cep']);
-        $dadosRequest['celular'] = str_replace(['.', '-','(',')'], '', $dadosRequest['celular']);
+        $dadosRequest['cpf'] = preg_replace('/\D/', '', $dadosRequest['cpf']);
+        $dadosRequest['cep'] = preg_replace('/\D/', '', $dadosRequest['cep']);
+        $dadosRequest['celular'] = preg_replace('/\D/', '', $dadosRequest['celular']);
 
         $validator = Validator::make($dadosRequest, [
             'name' => 'required|string|max:255',
@@ -40,9 +40,7 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
+            return redirect()->back()->withErrors($validator)->withInput()->with(['erro' => 'Usuário não atualizado','showModal' => 'editUserModal'.$user->id]);
         }
 
         if (empty($dadosRequest['password'])) {
@@ -52,12 +50,12 @@ class UserController extends Controller
         }
 
         $user->update($dadosRequest);
-        return redirect()->back()->with(['success' => 'Usuário atualizado com sucesso!']);
+        return redirect()->back()->with(['sucesso' => 'Usuário atualizado com sucesso!', 'showModal' => 'editUserModal'.$user->id]);
     }
 
     public function destroy(User $user)
     {
-        Log::channel('integrado')->info('destroy: ' . $user->id);
+        // Log::channel('integrado')->info('destroy: ' . $user->id);
         $user->delete();
         return redirect()->back()->with(['success' => 'Usuário excluído com sucesso!']);
     }
@@ -65,9 +63,9 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $dadosRequest = $request->all();
-        $dadosRequest['cpf'] = str_replace(['.', '-'], '', $dadosRequest['cpf']);
-        $dadosRequest['cep'] = str_replace(['.', '-'], '', $dadosRequest['cep']);
-        $dadosRequest['celular'] = str_replace(['.', '-','(',')'], '', $dadosRequest['celular']);
+        $dadosRequest['cpf'] = preg_replace('/\D/', '', $dadosRequest['cpf']);
+        $dadosRequest['cep'] = preg_replace('/\D/', '', $dadosRequest['cep']);
+        $dadosRequest['celular'] = preg_replace('/\D/', '', $dadosRequest['celular']);
 
         $validatedData = Validator::make($dadosRequest, [
             'name' => 'required|string|max:255',
@@ -81,10 +79,17 @@ class UserController extends Controller
             'numero' => 'nullable|string',
             'complemento' => 'nullable|string',
             'celular' => 'nullable|string',
-        ])->validate();
+        ]);
 
+        if ($validatedData->fails()) {
+            return redirect()->back()->withErrors($validatedData)->withInput()->with(['erro' => 'Usuário não criado','showModal' => 'createUserModal']);
+        }
+
+        $validatedData = $validatedData->validated();
         $validatedData['password'] = Hash::make($request->password);
+
         User::create($validatedData);
-        return redirect()->back()->with(['success' => 'Usuário criado com sucesso!', 'showModal' => true]);
+
+        return redirect()->back()->with(['sucesso' => 'Usuário criado com sucesso!', 'showModal' => 'createUserModal']);
     }
 }

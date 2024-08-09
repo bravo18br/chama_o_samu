@@ -14,11 +14,10 @@ class SuperAdminController extends Controller
 {
     public function retornaSuperAdmin()
     {
-        $chamados_lista = Chamado::all();
+        $chamados_lista = Chamado::withTrashed()->get();
         $fotos_lista = Foto::all();
-        $users_lista = User::withTrashed()
-            ->get();
-        $cartoes_lista = Cartao::all();
+        $users_lista = User::withTrashed()->get();
+        $cartoes_lista = Cartao::withTrashed()->get();
         $listas = [
             'users' => $users_lista,
             'chamados' => $chamados_lista,

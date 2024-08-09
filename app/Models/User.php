@@ -62,4 +62,20 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Visita::class);
     }
+
+    // Boot method para aplicar cascading soft deletes
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($user) {
+            if ($user->isForceDeleting()) {
+                // Se for um delete forçado, apague os chamados permanentemente
+                $user->chamados()->forceDelete();
+            } else {
+                // Se for um soft delete, aplique o soft delete nos chamados
+                $user->chamados()->delete();
+            }
+        });
+    }
 }

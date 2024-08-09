@@ -34,7 +34,7 @@
                                         <tr onclick="this.classList.toggle('clicked')">
                                             <td>
                                                 <!-- Botão para abrir o modal de edição de usuários -->
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModalUsers{{ $item->id }}">E</button>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editUserModal{{ $item->id }}" title="Editar registro">E</button>
 
                                                 <!-- Formulário para excluir o usuário -->
                                                 @if ($item->deleted_at == null)
@@ -57,116 +57,6 @@
                                             <td>{{ $item->$coluna }}</td>
                                             @endforeach
                                         </tr>
-
-                                        <!-- Modal de edição de users -->
-                                        <div class="modal fade" id="editModalUsers{{ $item->id }}" tabindex="-1" aria-labelledby="editModalLabel{{ $item->id }}" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="editModalLabel{{ $item->id }}">Editar User</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form action="/users/{{ $item->id }}" method="POST" enctype="multipart/form-data">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <div class="mb-3">
-                                                                <label for="name{{ $item->id }}" class="form-label">Name</label>
-                                                                <input type="text" class="form-control" id="name{{ $item->id }}" name="name" value="{{ $item->name }}" required>
-                                                                @error('name')
-                                                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="email{{ $item->id }}" class="form-label">Email</label>
-                                                                <input type="email" class="form-control" id="email{{ $item->id }}" name="email" value="{{ $item->email }}" required>
-                                                                @error('email')
-                                                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="role{{ $item->id }}" class="form-label">Role</label>
-                                                                <select class="form-control" id="role{{ $item->id }}" name="role" required>
-                                                                    <option value="1" {{ $item->role == 1 ? 'selected' : '' }}>Superadmin</option>
-                                                                    <option value="2" {{ $item->role == 2 ? 'selected' : '' }}>Operador SAMU</option>
-                                                                    <option value="3" {{ $item->role == 3 ? 'selected' : '' }}>Regular User</option>
-                                                                    <option value="4" {{ $item->role == 4 ? 'selected' : '' }}>Admin SAMU</option>
-                                                                </select>
-                                                                @error('role')
-                                                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="analfabeto{{ $item->id }}" class="form-label">Analfabeto</label>
-                                                                <select class="form-control" id="analfabeto{{ $item->id }}" name="analfabeto" required>
-                                                                    <option value="0" {{ $item->analfabeto == 0 ? 'selected' : '' }}>Não</option>
-                                                                    <option value="1" {{ $item->analfabeto == 1 ? 'selected' : '' }}>Sim</option>
-                                                                </select>
-                                                                @error('analfabeto')
-                                                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="password{{ $item->id }}" class="form-label">Forçar nova senha</label>
-                                                                <input type="password" class="form-control" id="password{{ $item->id }}" name="password">
-                                                                @error('password')
-                                                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="cpf{{ $item->id }}" class="form-label">CPF</label>
-                                                                <input type="text" class="form-control" id="cpf{{ $item->id }}" name="cpf" value="{{ $item->cpf }}" required>
-                                                                @error('cpf')
-                                                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="cep{{ $item->id }}" class="form-label">CEP</label>
-                                                                <input type="text" class="form-control" id="cep{{ $item->id }}" name="cep" value="{{ $item->cep }}">
-                                                                @error('cep')
-                                                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="rua{{ $item->id }}" class="form-label">Rua</label>
-                                                                <input type="text" class="form-control" id="rua{{ $item->id }}" name="rua" value="{{ $item->rua }}">
-                                                                @error('rua')
-                                                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="numero{{ $item->id }}" class="form-label">Número</label>
-                                                                <input type="text" class="form-control" id="numero{{ $item->id }}" name="numero" value="{{ $item->numero }}">
-                                                                @error('numero')
-                                                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="complemento{{ $item->id }}" class="form-label">Complemento</label>
-                                                                <input type="text" class="form-control" id="complemento{{ $item->id }}" name="complemento" value="{{ $item->complemento }}">
-                                                                @error('complemento')
-                                                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="celular{{ $item->id }}" class="form-label">Celular</label>
-                                                                <input type="text" class="form-control" id="celular{{ $item->id }}" name="celular" value="{{ $item->celular }}">
-                                                                @error('celular')
-                                                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-                                                            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-                                                            @if(session('success'))
-                                                            <div class="alert alert-success">
-                                                                {{ session('success') }}
-                                                            </div>
-                                                            @endif
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -208,14 +98,14 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <input type="hidden" name="id" value="{{ $item->id }}">
-                                                    <button class="btn btn-danger" type="submit">X</button>
+                                                    <button class="btn btn-danger" type="submit" title="Excluir registro">X</button>
                                                 </form>
                                                 @else
                                                 <form action="/chamados" method="POST">
                                                     @csrf
                                                     @method('PUT')
                                                     <input type="hidden" name="id" value="{{ $item->id }}">
-                                                    <button class="btn btn-primary" type="submit">R</button>
+                                                    <button class="btn btn-warning" type="submit" title="Restaurar registro">R</button>
                                                 </form>
                                                 @endif
                                             </td>
@@ -250,6 +140,7 @@
                                     <thead>
                                         <tr>
                                             <th></th>
+                                            <th>tumb</th>
                                             @foreach (Schema::getColumnListing($listas['fotos']->first()->getTable()) as $coluna)
                                             <th>{{ $coluna }}</th>
                                             @endforeach
@@ -264,16 +155,19 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <input type="hidden" name="id" value="{{ $item->id }}">
-                                                    <button class="btn btn-danger" type="submit">X</button>
+                                                    <button class="btn btn-danger" type="submit" title="Excluir registro">X</button>
                                                 </form>
                                                 @else
                                                 <form action="/fotos" method="POST">
                                                     @csrf
                                                     @method('PUT')
                                                     <input type="hidden" name="id" value="{{ $item->id }}">
-                                                    <button class="btn btn-primary" type="submit">R</button>
+                                                    <button class="btn btn-warning" type="submit" title="Restaurar registro">R</button>
                                                 </form>
                                                 @endif
+                                            </td>
+                                            <td>
+                                                <img src="{{ asset('storage/fotos/'.$item->nome) }}" alt="Miniatura" style="width: 100px; height: 100px;">
                                             </td>
                                             @foreach (Schema::getColumnListing($item->getTable()) as $coluna)
                                             <td>{{ $item->$coluna }}</td>
@@ -319,7 +213,7 @@
                                         <tr onclick="this.classList.toggle('clicked')">
                                             <td>
                                                 <!-- Botão para abrir o modal de edição de cartão -->
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModalCartoes{{ $item->id }}">E</button>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editCartaoModal{{ $item->id }}" title="Editar registro">E</button>
 
                                                 <!-- Formulário para excluir o cartão -->
                                                 @if ($item->deleted_at == null)
@@ -342,68 +236,6 @@
                                             <td>{{ $item->$coluna }}</td>
                                             @endforeach
                                         </tr>
-
-                                        <!-- Modal de edição de cartões -->
-                                        <div class="modal fade" id="editModalCartoes{{ $item->id }}" tabindex="-1" aria-labelledby="editModalLabel{{ $item->id }}" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="editModalLabel{{ $item->id }}">Editar Cartão</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form action="/cartao/{{ $item->id }}" method="POST" enctype="multipart/form-data">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <div class="mb-3">
-                                                                <label for="legenda_user_{{ $item->id }}" class="form-label">Legenda do Usuário</label>
-                                                                <input type="text" class="form-control" id="legenda_user_{{ $item->id }}" name="legenda_user" value="{{ $item->legenda_user }}" required>
-                                                                @error('legenda_user')
-                                                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="legenda_samu_{{ $item->id }}" class="form-label">Legenda do SAMU</label>
-                                                                <input type="text" class="form-control" id="legenda_samu_{{ $item->id }}" name="legenda_samu" value="{{ $item->legenda_samu }}" required>
-                                                                @error('legenda_samu')
-                                                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="foto_{{ $item->id }}" class="form-label">Foto</label>
-                                                                <input type="file" class="form-control" id="foto_{{ $item->id }}" name="foto" accept="image/*">
-                                                                @error('foto')
-                                                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="nivel_{{ $item->id }}" class="form-label">Nível</label>
-                                                                <select id="nivel_{{ $item->id }}" name="nivel" class="form-control" required>
-                                                                    <option value="nivel1" {{ $item->nivel == 'nivel1' ? 'selected' : '' }}>Nível 1 - local</option>
-                                                                    <option value="nivel2" {{ $item->nivel == 'nivel2' ? 'selected' : '' }}>Nível 2 - quem</option>
-                                                                    <option value="nivel3" {{ $item->nivel == 'nivel3' ? 'selected' : '' }}>Nível 3 - ferimento</option>
-                                                                    <option value="raiz" {{ $item->nivel == 'raiz' ? 'selected' : '' }}>Raiz</option>
-                                                                    <option value="voltar" {{ $item->nivel == 'voltar' ? 'selected' : '' }}>Voltar</option>
-                                                                    <option value="foto" {{ $item->nivel == 'foto' ? 'selected' : '' }}>Foto</option>
-                                                                    <option value="avancar" {{ $item->nivel == 'avancar' ? 'selected' : '' }}>Avançar</option>
-                                                                    <option value="cancelar" {{ $item->nivel == 'cancelar' ? 'selected' : '' }}>Cancelar</option>
-                                                                    <option value="registrar" {{ $item->nivel == 'registrar' ? 'selected' : '' }}>Registrar</option>
-                                                                </select>
-                                                                @error('nivel')
-                                                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-                                                            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-                                                            @if(session('success'))
-                                                            <div class="alert alert-success">
-                                                                {{ session('success') }}
-                                                            </div>
-                                                            @endif
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -464,13 +296,19 @@
                                         @enderror
                                     </div>
                                     <button type="submit" class="btn btn-success">Criar Cartão</button>
-                                    @if(session('success'))
-                                    <div class="alert alert-success">
-                                        {{ session('success') }}
+                                    @if(session('showModal')=='createCartaoModal')
+                                    @if(session('erro'))
+                                    <div class="alert alert-danger m-1">
+                                        {{ session('erro') }}
                                     </div>
                                     @endif
+                                    @if(session('sucesso'))
+                                    <div class="alert alert-success m-1">
+                                        {{ session('sucesso') }}
+                                    </div>
+                                    @endif
+                                    @endif
                                 </form>
-
                             </div>
                         </div>
                     </div>
@@ -581,24 +419,222 @@
                                         @enderror
                                     </div>
                                     <button type="submit" class="btn btn-success">Criar Usuário</button>
-                                    @if(session('success'))
-                                    <div class="alert alert-success">
-                                        {{ session('success') }}
+                                    @if(session('showModal')=='createUserModal')
+                                    @if(session('erro'))
+                                    <div class="alert alert-danger m-1">
+                                        {{ session('erro') }}
                                     </div>
+                                    @endif
+                                    @if(session('sucesso'))
+                                    <div class="alert alert-success m-1">
+                                        {{ session('sucesso') }}
+                                    </div>
+                                    @endif
                                     @endif
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Modal de edição de users -->
+                @foreach ($listas['users'] as $index => $item)
+                <div class="modal fade" id="editUserModal{{ $item->id }}" tabindex="-1" aria-labelledby="editModalLabel{{ $item->id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editModalLabel{{ $item->id }}">Editar User</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/users/{{ $item->id }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="mb-3">
+                                        <label for="name{{ $item->id }}" class="form-label">Name</label>
+                                        <input type="text" class="form-control" id="name{{ $item->id }}" name="name" value="{{ $item->name }}" required>
+                                        @error('name')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email{{ $item->id }}" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email{{ $item->id }}" name="email" value="{{ $item->email }}" required>
+                                        @error('email')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="role{{ $item->id }}" class="form-label">Role</label>
+                                        <select class="form-control" id="role{{ $item->id }}" name="role" required>
+                                            <option value="1" {{ $item->role == 1 ? 'selected' : '' }}>Superadmin</option>
+                                            <option value="2" {{ $item->role == 2 ? 'selected' : '' }}>Operador SAMU</option>
+                                            <option value="3" {{ $item->role == 3 ? 'selected' : '' }}>Regular User</option>
+                                            <option value="4" {{ $item->role == 4 ? 'selected' : '' }}>Admin SAMU</option>
+                                        </select>
+                                        @error('role')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="analfabeto{{ $item->id }}" class="form-label">Analfabeto</label>
+                                        <select class="form-control" id="analfabeto{{ $item->id }}" name="analfabeto" required>
+                                            <option value="0" {{ $item->analfabeto == 0 ? 'selected' : '' }}>Não</option>
+                                            <option value="1" {{ $item->analfabeto == 1 ? 'selected' : '' }}>Sim</option>
+                                        </select>
+                                        @error('analfabeto')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password{{ $item->id }}" class="form-label">Forçar nova senha</label>
+                                        <input type="password" class="form-control" id="password{{ $item->id }}" name="password">
+                                        @error('password')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cpf{{ $item->id }}" class="form-label">CPF</label>
+                                        <input type="text" class="form-control" id="cpf{{ $item->id }}" name="cpf" value="{{ $item->cpf }}" required>
+                                        @error('cpf')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cep{{ $item->id }}" class="form-label">CEP</label>
+                                        <input type="text" class="form-control" id="cep{{ $item->id }}" name="cep" value="{{ $item->cep }}">
+                                        @error('cep')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="rua{{ $item->id }}" class="form-label">Rua</label>
+                                        <input type="text" class="form-control" id="rua{{ $item->id }}" name="rua" value="{{ $item->rua }}">
+                                        @error('rua')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="numero{{ $item->id }}" class="form-label">Número</label>
+                                        <input type="text" class="form-control" id="numero{{ $item->id }}" name="numero" value="{{ $item->numero }}">
+                                        @error('numero')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="complemento{{ $item->id }}" class="form-label">Complemento</label>
+                                        <input type="text" class="form-control" id="complemento{{ $item->id }}" name="complemento" value="{{ $item->complemento }}">
+                                        @error('complemento')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="celular{{ $item->id }}" class="form-label">Celular</label>
+                                        <input type="text" class="form-control" id="celular{{ $item->id }}" name="celular" value="{{ $item->celular }}">
+                                        @error('celular')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                                    @if(session('showModal')=='editUserModal'.$item->id)
+                                    @if(session('erro'))
+                                    <div class="alert alert-danger m-1">
+                                        {{ session('erro') }}
+                                    </div>
+                                    @endif
+                                    @if(session('sucesso'))
+                                    <div class="alert alert-success m-1">
+                                        {{ session('sucesso') }}
+                                    </div>
+                                    @endif
+                                    @endif
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
+                <!-- Modal de edição de cartões -->
+                @foreach ($listas['cartoes'] as $index => $item)
+                <div class="modal fade" id="editCartaoModal{{ $item->id }}" tabindex="-1" aria-labelledby="editModalLabel{{ $item->id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editModalLabel{{ $item->id }}">Editar Cartão</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/cartao/{{ $item->id }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="mb-3">
+                                        <label for="legenda_user_{{ $item->id }}" class="form-label">Legenda do Usuário</label>
+                                        <input type="text" class="form-control" id="legenda_user_{{ $item->id }}" name="legenda_user" value="{{ $item->legenda_user }}" required>
+                                        @error('legenda_user')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="legenda_samu_{{ $item->id }}" class="form-label">Legenda do SAMU</label>
+                                        <input type="text" class="form-control" id="legenda_samu_{{ $item->id }}" name="legenda_samu" value="{{ $item->legenda_samu }}" required>
+                                        @error('legenda_samu')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="foto_{{ $item->id }}" class="form-label">Foto</label>
+                                        <input type="file" class="form-control" id="foto_{{ $item->id }}" name="foto" accept="image/*">
+                                        @error('foto')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nivel_{{ $item->id }}" class="form-label">Nível</label>
+                                        <select id="nivel_{{ $item->id }}" name="nivel" class="form-control" required>
+                                            <option value="nivel1" {{ $item->nivel == 'nivel1' ? 'selected' : '' }}>Nível 1 - local</option>
+                                            <option value="nivel2" {{ $item->nivel == 'nivel2' ? 'selected' : '' }}>Nível 2 - quem</option>
+                                            <option value="nivel3" {{ $item->nivel == 'nivel3' ? 'selected' : '' }}>Nível 3 - ferimento</option>
+                                            <option value="raiz" {{ $item->nivel == 'raiz' ? 'selected' : '' }}>Raiz</option>
+                                            <option value="voltar" {{ $item->nivel == 'voltar' ? 'selected' : '' }}>Voltar</option>
+                                            <option value="foto" {{ $item->nivel == 'foto' ? 'selected' : '' }}>Foto</option>
+                                            <option value="avancar" {{ $item->nivel == 'avancar' ? 'selected' : '' }}>Avançar</option>
+                                            <option value="cancelar" {{ $item->nivel == 'cancelar' ? 'selected' : '' }}>Cancelar</option>
+                                            <option value="registrar" {{ $item->nivel == 'registrar' ? 'selected' : '' }}>Registrar</option>
+                                        </select>
+                                        @error('nivel')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                                    @if(session('showModal')=='editCartaoModal'.$item->id)
+                                    @if(session('erro'))
+                                    <div class="alert alert-danger m-1">
+                                        {{ session('erro') }}
+                                    </div>
+                                    @endif
+                                    @if(session('sucesso'))
+                                    <div class="alert alert-success m-1">
+                                        {{ session('sucesso') }}
+                                    </div>
+                                    @endif
+                                    @endif
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
             </div>
         </div>
     </div>
 
-    @if($errors->any() || session('showModal'))
+    @if(session('showModal'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var myModal = new bootstrap.Modal(document.getElementById('createUserModal'), {
+            var modalId = `{{ session('showModal') }}`;
+            var myModal = new bootstrap.Modal(document.getElementById(modalId), {
                 keyboard: false
             });
             myModal.show();
@@ -609,6 +645,5 @@
     <x-busca-via-c-e-p />
 </x-app-layout>
 
-<!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet"> -->
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

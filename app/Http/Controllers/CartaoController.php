@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cartao;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CartaoController extends Controller
 {
@@ -12,22 +13,7 @@ class CartaoController extends Controller
         Cartao::withTrashed()
             ->find($request->id)
             ->restore();
-            return redirect()->back()->with(['success' => 'Cartão restaurado com sucesso!']);
-    }
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return redirect()->back()->with(['success' => 'Cartão restaurado com sucesso!']);
     }
 
     /**
@@ -35,35 +21,24 @@ class CartaoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $dadosRequest = $request->all();
+        $validatedData = Validator::make($dadosRequest, [
             'legenda_user' => 'required',
             'legenda_samu' => 'required',
             'foto' => 'required',
             'nivel' => 'required',
         ]);
-        $dadosRequest = $request->all();
+
+        if ($validatedData->fails()) {
+            return redirect()->back()->withErrors($validatedData)->withInput()->with(['erro' => 'Cartão não criado', 'showModal' => 'createCartaoModal']);
+        }
+
         $foto = $request->file('foto');
-        $dadosRequest['imagem_caminho'] = $foto->store('public/imagens');
+        $dadosRequest['imagem_caminho'] = $foto->store('public/images');
         $dadosRequest['imagem_nome'] = $foto->hashName();
 
         Cartao::create($dadosRequest);
-        return redirect()->back()->with(['success' => 'Cartão criado com sucesso!']);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Cartao $cartao)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Cartao $cartao)
-    {
-        //
+        return redirect()->back()->with(['sucesso' => 'Cartão criado com sucesso!', 'showModal' => 'createCartaoModal']);
     }
 
     /**
@@ -74,11 +49,11 @@ class CartaoController extends Controller
         $dadosRequest = $request->all();
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
-            $dadosRequest['imagem_caminho'] = $foto->store('public/imagens');
+            $dadosRequest['imagem_caminho'] = $foto->store('public/images');
             $dadosRequest['imagem_nome'] = $foto->hashName();
         }
         $cartao->update($dadosRequest);
-        return redirect()->back()->with(['success' => 'Cartão atualizado com sucesso!']);
+        return redirect()->back()->with(['sucesso' => 'Cartão atualizado com sucesso!', 'showModal' => 'editCartaoModal' . $cartao->id]);
     }
 
     /**

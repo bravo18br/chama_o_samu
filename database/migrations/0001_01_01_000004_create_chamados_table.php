@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('anotacao_samu')->comment('Anotação do SAMU sobre o chamado')->nullable();
             $table->integer('situacao')->comment('4-cancelado, 1-aberto, 2-em andamento, 3-encerrado')->default(1);
             $table->timestamps();
-
+            $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

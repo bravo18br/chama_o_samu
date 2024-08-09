@@ -29,7 +29,9 @@ $register = function () {
     // Log::channel('integrado')->info('register - $this->rua: ' . $this->rua);
 
     $this->cpf = preg_replace('/\D/', '', $this->cpf);
-    $this->cep = str_replace(['.', '-'], '', $this->cep);
+    $this->cep = preg_replace('/\D/', '', $this->cep);
+    $this->celular = preg_replace('/\D/', '', $this->celular);
+
     $validated = $this->validate([
         'analfabeto' => 'required|numeric|digits:1|in:0,1',
         'celular' => 'nullable|regex:/^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/',
@@ -39,7 +41,7 @@ $register = function () {
         'email' => 'required|string|lowercase|email|max:255|unique:users',
         'name' => 'required|string|max:255',
         'numero' => 'nullable|max:255',
-        'password' => 'required|string|confirmed',
+        'password' => 'required|string|min:8|confirmed',
         'rua' => 'nullable|max:255',
     ], [
         'analfabeto.required' => 'O campo analfabeto é obrigatório.',
@@ -57,6 +59,7 @@ $register = function () {
         'email.unique' => 'Esse email já está cadastrado. Tente recuperar a senha.',
         'name.required' => 'O campo nome é obrigatório.',
         'password.required' => 'O campo senha é obrigatório.',
+        'password.min' => 'A senha precisa ter no mínimo 8 caracteres.',
     ]);
 
     $validated['password'] = Hash::make($validated['password']);
