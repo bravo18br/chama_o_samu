@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class CartaoController extends Controller
 {
+    public function restaura(Request $request)
+    {
+        Cartao::withTrashed()
+            ->find($request->id)
+            ->restore();
+            return redirect()->back()->with(['success' => 'Cartão restaurado com sucesso!']);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -40,7 +47,7 @@ class CartaoController extends Controller
         $dadosRequest['imagem_nome'] = $foto->hashName();
 
         Cartao::create($dadosRequest);
-        return back();
+        return redirect()->back()->with(['success' => 'Cartão criado com sucesso!']);
     }
 
     /**
@@ -71,7 +78,7 @@ class CartaoController extends Controller
             $dadosRequest['imagem_nome'] = $foto->hashName();
         }
         $cartao->update($dadosRequest);
-        return back();
+        return redirect()->back()->with(['success' => 'Cartão atualizado com sucesso!']);
     }
 
     /**
@@ -80,6 +87,6 @@ class CartaoController extends Controller
     public function destroy(Cartao $cartao)
     {
         $cartao->delete();
-        return back();
+        return redirect()->back()->with(['success' => 'Cartão excluído com sucesso!']);
     }
 }

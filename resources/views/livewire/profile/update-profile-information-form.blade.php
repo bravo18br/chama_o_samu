@@ -25,7 +25,7 @@ $updateProfileInformation = function () {
     $user = Auth::user();
     $validated = null;
 
-    Log::channel('integrado')->info('update - $this->rua: ' . $this->rua);
+    // Log::channel('integrado')->info('update - $this->rua: ' . $this->rua);
 
     $this->cpf = str_replace(['.', '-'], '', $this->cpf);
     $this->cep = str_replace(['.', '-'], '', $this->cep);

@@ -40,9 +40,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('samu_admin', [SamuAdminController::class, 'atualizaOperador']);
     Route::get('relatorio', [RelatorioController::class, 'retornaRelatorio'])
         ->name('relatorio');
-    Route::delete('users', [UserController::class, 'delete']);
-    Route::put('users', [UserController::class, 'restaura']);
+    Route::resource('users', UserController::class);
+    Route::put('users/restore/{id}', [UserController::class, 'restaura'])->name('users.restore');
     Route::resource('cartao', CartaoController::class);
+    Route::put('cartao/restore/{id}', [CartaoController::class, 'restaura'])->name('cartao.restore');
     Route::put('nivel1', [ChamadoController::class, 'put_nivel1']);
     Route::put('nivel2', [ChamadoController::class, 'put_nivel2']);
     Route::put('nivel3', [ChamadoController::class, 'put_nivel3']);

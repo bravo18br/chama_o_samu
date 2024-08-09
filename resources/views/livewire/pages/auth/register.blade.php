@@ -26,7 +26,7 @@ state([
 
 $register = function () {
 
-    Log::channel('integrado')->info('register - $this->rua: ' . $this->rua);
+    // Log::channel('integrado')->info('register - $this->rua: ' . $this->rua);
 
     $this->cpf = preg_replace('/\D/', '', $this->cpf);
     $this->cep = str_replace(['.', '-'], '', $this->cep);
