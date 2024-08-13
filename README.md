@@ -94,7 +94,7 @@ Este projeto é licenciado sob a Licença MIT - veja o arquivo [LICENSE.md](LICE
    - Se `APP_ENV=prod`, descomente a linha 37 (`php artisan config:cache`) no arquivo `entrypoint.sh` na raiz do projeto para otimizar o cache de configuração.
 
 3.5. **Criar o build da aplicação:**   
-   - docker build -t chama_o_samu:prod .
+   - docker build -t chama_o_samu:prod -f Dockerfile-swarm .
 
 4. **Implantar o stack no Docker Swarm:**
 

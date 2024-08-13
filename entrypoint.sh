@@ -11,7 +11,10 @@ if [ ! -f /var/www/html/database/database.sqlite ]; then
   touch /var/www/html/database/database.sqlite
 fi
 
-mkdir /var/www/html/storage/app/public/fotos
+# Verifica se a pasta existe antes de criar
+if [ ! -d /var/www/html/storage/app/public/fotos ]; then
+  mkdir -p /var/www/html/storage/app/public/fotos
+fi
 
 # Define as permissões corretas
 chown -R www-data:www-data /var/www/html
