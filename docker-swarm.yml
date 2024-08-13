@@ -1,9 +1,6 @@
 services:
   app:
     image: chama_o_samu:prod
-    container_name: prod_araucaria_chama_o_samu
-    build: .
-    restart: always
     working_dir: /var/www/html
     deploy:
       replicas: 2
