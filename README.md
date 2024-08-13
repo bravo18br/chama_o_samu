@@ -72,6 +72,62 @@ Este projeto é licenciado sob a Licença MIT - veja o arquivo [LICENSE.md](LICE
 - tail -f /var/www/html/storage/logs/apache_access.log
 - tail -f /var/www/html/storage/logs/integrado.log
 
+## Início básico SWARM
+1. **Clonar o repositório:**
+
+   ```bash
+   gh repo clone bravo18br/chama_o_samu prod_araucaria_chama_o_samu
+   ```
+
+2. **Criar o arquivo `.env`:**
+
+   - Utilize o arquivo `.env.example` como base para criar o `.env` na raiz do projeto.
+   - Ajuste as seguintes variáveis conforme necessário:
+     - `APP_ENV` para `local` ou `prod`.
+     - `APP_DEBUG` para `true` ou `false`.
+     - `APP_URL` (exemplo: `http://ip_do_servidor:porta_do_docker`).
+     - `MAIL_USERNAME` e `MAIL_PASSWORD` (necessários para o login dos usuários).
+     - `SUPER_ADM_USER` e `SUPER_ADM_PASS` (credenciais do superusuário para manutenção/acesso god mode). Este usuário é criado apenas em modo "prod".
+
+3. **Ajustar o `entrypoint.sh` (opcional):**
+
+   - Se `APP_ENV=prod`, descomente a linha 37 (`php artisan config:cache`) no arquivo `entrypoint.sh` na raiz do projeto para otimizar o cache de configuração.
+
+4. **Implantar o stack no Docker Swarm:**
+
+   ```bash
+   docker stack deploy -c docker-swarm.yml prod_araucaria_chama_o_samu
+   ```
+
+   - Esse comando vai iniciar os serviços definidos no arquivo `docker-swarm.yml`. Após cerca de 2 minutos, o serviço deve estar acessível no navegador.
+
+5. **Comandos úteis no Docker Swarm:**
+
+   - **Visualizar os containers em execução:**
+     ```bash
+     docker service ps prod_araucaria_chama_o_samu_app
+     ```
+     - Este comando lista as tarefas do serviço, mostrando o status dos containers.
+
+   - **Acessar o shell de um container:**
+     ```bash
+     docker exec -it <container_id> /bin/bash
+     ```
+     - Substitua `<container_id>` pelo ID do container desejado. Esse comando permite que você acesse o shell do container para realizar manutenções ou verificações.
+
+   - **Monitorar os logs do serviço:**
+     ```bash
+     docker service logs -f prod_araucaria_chama_o_samu_app
+     ```
+     - Esse comando mostra os logs em tempo real do serviço `prod_araucaria_chama_o_samu_app`.
+
+6. **Localização dos logs:**
+
+   - Os logs do sistema podem ser encontrados nas seguintes localizações dentro do container:
+     - `/var/www/html/storage/logs/apache_error.log` (erros do Apache)
+     - `/var/www/html/storage/logs/apache_access.log` (acessos do Apache)
+     - `/var/www/html/storage/logs/integrado.log` (logs personalizados da aplicação)
+
 ## Conseguir Credenciais do GMAIL
 
 Para obter as credenciais do GMAIL, siga os passos abaixo:
