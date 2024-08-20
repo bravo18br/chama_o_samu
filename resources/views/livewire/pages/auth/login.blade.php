@@ -55,6 +55,13 @@ $login = function () {
             </label>
         </div>
 
+        <!-- AUTH GOOGLE API -->
+        <div class="flex justify-center">
+            <a class="g-signin2" href="{{ route('authGoogleRedirect') }}" role="button"></a>
+        </div>
+        <meta name="google-signin-client_id" content="{{ env('GOOGLE_CLIENT_ID') }}">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+
         <div class="flex items-center justify-end mt-4">
             <div class="block">
                 @if (Route::has('password.request'))

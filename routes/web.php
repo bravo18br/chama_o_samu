@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthGoogleController;
 use App\Http\Controllers\CartaoController;
 use App\Http\Controllers\ChamadoController;
 use App\Http\Controllers\DashboardController;
@@ -20,6 +21,14 @@ Route::get('/', [HomeController::class, 'index'])
     ->name('home');
 Route::view('briefing', 'briefing')
     ->name('briefing');
+Route::view('privacidade', 'termosPrivacidade')
+    ->name('privacidade');
+Route::view('termos', 'termosPrivacidade')
+    ->name('termos');
+
+Route::get('/auth/google/redirect', [AuthGoogleController::class, 'redirect'])->name('authGoogleRedirect');
+Route::get('/auth/google/callback', [AuthGoogleController::class, 'callback'])->name('authGoogleCallback');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('superadmin', [SuperAdminController::class, 'retornaSuperAdmin'])
         ->name('superadmin');

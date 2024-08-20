@@ -3,3 +3,4 @@
 *.db
 /storage/app/public/fotos/*
 !/storage/app/public/fotos/.gitkeep
+/node_modules

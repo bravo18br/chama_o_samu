@@ -53,6 +53,10 @@
             <div class="col-sm-6 p-1 d-flex justify-content-center">
                 <a class="btn-cor-principal-1 btn-entrar" href="{{ route('login') }}" role="button"><b>Entrar</b></a>
                 <a class="btn-cor-principal-1 btn-registrar" href="{{ route('register') }}" role="button"><b>Registrar</b></a>
+                <div class="d-flex flex-column justify-content-center">
+                    <a href="{{ route('termos') }}" role="button"><b>Termos de Uso</b></a>
+                    <a href="{{ route('privacidade') }}" role="button"><b>Política de Privacidade</b></a>
+                </div>
             </div>
         </div>
     </div>
