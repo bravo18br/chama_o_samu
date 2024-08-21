@@ -13,7 +13,9 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     gh \
-    nano
+    nano \
+    certbot \
+    python3-certbot-apache
 RUN localedef -i pt_BR -c -f UTF-8 -A /usr/share/locale/locale.alias pt_BR.UTF-8 \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd \
