@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Log;
 
 class AuthGoogleController extends Controller
 {
@@ -13,9 +16,16 @@ class AuthGoogleController extends Controller
     }
     public function callback()
     {
-        // TODO
-        $user = Socialite::driver('google')->user();
+        try {
+            $user = Socialite::driver('google')->user();
 
-        // $user->token
+            // Depurando os dados do usuário
+            dd($user);
+
+        } catch (\Exception $e) {
+            Log::channel('integrado')->error('AuthGoogleController: ' . $e->getMessage());
+            return view('error404');
+        }
     }
+
 }

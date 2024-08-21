@@ -56,11 +56,12 @@ $login = function () {
         </div>
 
         <!-- AUTH GOOGLE API -->
-        <div class="flex justify-center">
-            <a class="g-signin2" href="{{ route('authGoogleRedirect') }}" role="button"></a>
+        <div class="cartao">
+            <a href="{{ route('authGoogleRedirect') }}" class="flex items-center justify-center space-x-2">
+                <img class="h-6 w-6" src="{{ asset('/storage/images/google_logo.png') }}" alt="Google Logo">
+                <p class="text-gray-700 font-medium">Login com Google</p>
+            </a>
         </div>
-        <meta name="google-signin-client_id" content="{{ env('GOOGLE_CLIENT_ID') }}">
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
 
         <div class="flex items-center justify-end mt-4">
             <div class="block">
