@@ -3,8 +3,8 @@ services:
     image: chama_o_samu:prod
     working_dir: /var/www/html
     ports:
-      - 8076:80
-      - 8075:443
+      - 8069:80
+      - 8068:443
     deploy:
       replicas: 2
       resources:

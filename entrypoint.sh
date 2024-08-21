@@ -34,9 +34,8 @@ chmod -R 775 /var/www/html/database/database.sqlite
 chmod -R 775 /var/www/html/storage/app/public/fotos
 
 # Gerar certificado SSL autoassinado se não existir
-SSL_DIR="/etc/ssl/certs"
-SSL_KEY="${SSL_DIR}/selfsigned.key"
-SSL_CERT="${SSL_DIR}/selfsigned.crt"
+SSL_KEY="/etc/apache2/ssl/apache-selfsigned.key"
+SSL_CERT="/etc/apache2/ssl/apache-selfsigned.crt"
 Pais_C="BR"
 Estado_ST="Parana"
 Cidade_L="Araucaria"
