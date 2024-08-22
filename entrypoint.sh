@@ -33,6 +33,33 @@ chmod -R 775 /var/www/html/bootstrap/cache
 chmod -R 775 /var/www/html/database/database.sqlite
 chmod -R 775 /var/www/html/storage/app/public/fotos
 
+# Gerar certificado SSL autoassinado se não existir
+SSL_DIR="/etc/apache2/ssl"
+SSL_KEY="$SSL_DIR/apache-selfsigned.key"
+SSL_CERT="$SSL_DIR/apache-selfsigned.crt"
+
+Pais_C="BR"
+Estado_ST="Parana"
+Cidade_L="Araucaria"
+Organizacao_O="SMCIT"
+CommonName_CN="172.20.10.37"
+UnidadeOrganizacional_OU="Prefeitura"
+
+if [ ! -f "$SSL_KEY" ] || [ ! -f "$SSL_CERT" ]; then
+    echo "Criando certificado SSL em $SSL_CERT"
+    mkdir -p "$SSL_DIR"
+    openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+        -keyout "$SSL_KEY" \
+        -out "$SSL_CERT" \
+        -subj "/C=$Pais_C/ST=$Estado_ST/L=$Cidade_L/O=$Organizacao_O/CN=$CommonName_CN/OU=$UnidadeOrganizacional_OU"
+fi
+
+# Verificar se o certificado foi criado
+if [ ! -f "$SSL_CERT" ]; then
+    echo "Erro: O certificado SSL não foi criado!"
+    exit 1
+fi
+
 # Atualizar dependências do projeto
 cd /var/www/html
 composer install --no-interaction --prefer-dist --optimize-autoloader

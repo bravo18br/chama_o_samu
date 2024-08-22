@@ -55,6 +55,14 @@ $login = function () {
             </label>
         </div>
 
+        <!-- AUTH GOOGLE API -->
+        <div class="cartao">
+            <a href="{{ route('authGoogleRedirect') }}" class="flex items-center justify-center space-x-2">
+                <img class="h-6 w-6" src="{{ asset('/storage/images/google_logo.png') }}" alt="Google Logo">
+                <p class="text-gray-700 font-medium">Login com Google</p>
+            </a>
+        </div>
+
         <div class="flex items-center justify-end mt-4">
             <div class="block">
                 @if (Route::has('password.request'))

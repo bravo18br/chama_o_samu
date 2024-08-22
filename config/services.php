@@ -31,4 +31,17 @@ return [
         ],
     ],
 
+    'govbr' => [
+        'client_id' => env('GOVBR_CLIENT_ID'),
+        'client_secret' => env('GOVBR_CLIENT_SECRET'),
+        'redirect' => env('APP_URL') . env('GOVBR_REDIRECT_URI'),
+        'environment' => env('GOVBR_ENVIRONMENT', 'production'),
+    ],
+
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('APP_URL') . env('GOOGLE_REDIRECT_URI')
+    ],
+
 ];
