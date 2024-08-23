@@ -1,2 +1,0 @@
-10.0.0.2 - - [15/Aug/2024:11:48:15 +0000] "GET / HTTP/1.1" 200 2229 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
-::1 - - [15/Aug/2024:11:48:17 +0000] "HEAD / HTTP/1.1" 200 0 "-" "curl/8.5.0"

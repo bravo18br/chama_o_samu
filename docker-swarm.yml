@@ -7,26 +7,43 @@ services:
       - 8068:443
     deploy:
       replicas: 2
-      resources:
-        limits:
-          cpus: "0.5"
-          memory: 256M
       restart_policy:
         condition: on-failure
     volumes:
       - ./:/var/www/html
       - ./apache.conf:/etc/apache2/sites-available/000-default.conf
+      - ./logs/integrado.log:/var/www/html/storage/logs/integrado.log
+      - ./logs/laravel.log:/var/www/html/storage/logs/laravel.log
+      - ./logs/custom.log:/var/www/html/storage/logs/custom.log
+      - ./logs/apache_access.log:/var/log/apache2/access.log
+      - ./logs/apache_error.log:/var/log/apache2/error.log
     networks:
       - chama_o_samu_ssl
     environment:
       - APACHE_RUN_USER=www-data
       - APACHE_RUN_GROUP=www-data
-    healthcheck:
-      test: ["CMD-SHELL", "curl -I -f http://localhost || exit 1"]
-      interval: 60s
-      timeout: 10s
-      retries: 3
+      - DATABASE_URL=postgres://user:password@postgres:5432/chama_o_samu_db
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:16.4-alpine3.20
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./logs/postgres.log:/var/lib/postgresql/data/log/postgresql.log
+      - ./start_postgres.sh:/var/lib/postgresql/data/start_postgres.sh
+    networks:
+      - chama_o_samu_ssl
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=chama_o_samu_db
+      - TZ=America/Sao_Paulo
+    command: "/bin/sh /var/lib/postgresql/data/start_postgres.sh"
 
 networks:
   chama_o_samu_ssl:
     driver: overlay
+
+volumes:
+  postgres_data:
