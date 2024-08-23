@@ -4,7 +4,7 @@ services:
     working_dir: /var/www/html
     ports:
       - 8069:80
-      - 8068:443
+      # - 8068:443
     deploy:
       replicas: 2
       restart_policy:
@@ -12,6 +12,7 @@ services:
     volumes:
       - ./:/var/www/html
       - ./apache.conf:/etc/apache2/sites-available/000-default.conf
+      - ./apache2.conf:/etc/apache2/apache2.conf
       - ./logs/integrado.log:/var/www/html/storage/logs/integrado.log
       - ./logs/laravel.log:/var/www/html/storage/logs/laravel.log
       - ./logs/custom.log:/var/www/html/storage/logs/custom.log
@@ -29,21 +30,18 @@ services:
   postgres:
     image: postgres:16.4-alpine3.20
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - /postgresql:/var/lib/postgresql/data
       - ./logs/postgres.log:/var/lib/postgresql/data/log/postgresql.log
-      - ./start_postgres.sh:/var/lib/postgresql/data/start_postgres.sh
     networks:
       - chama_o_samu_ssl
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
       - POSTGRES_DB=chama_o_samu_db
       - TZ=America/Sao_Paulo
-    command: "/bin/sh /var/lib/postgresql/data/start_postgres.sh"
+    # command: "/bin/sh /var/lib/postgresql/data/start_postgres.sh"
 
 networks:
   chama_o_samu_ssl:
     driver: overlay
 
-volumes:
-  postgres_data:
