@@ -55,13 +55,19 @@ $login = function () {
             </label>
         </div>
 
+        <!-- TODO -->
+        <!-- DEIXEI COMENTADO POR HORA, PRECISA TER O SSL FUNCIONANDO, SENÃO O GOOGLE NÃO DEVOLVE OS DADOS.
+        PRA FAZER O SSL PRECISA DE UM DOMÍNIO (QUE O CHICO JÁ PEDIU, MAS DEMORA "burocracia").
+        NÃO ADIANTA FAZER SSL AUTOASSINADO PELO CERTBOT NGINX OU PELO APACHE, JÁ TENTEI, PRECISA SER CERTIFICADO DE EMPRESA AUTORIZADA.
+        ESSAS FUNÇÕES DE LOGAR USANDO OUTRAS CONTAS, É FEITA PELO LARAVEL SOCIALITE E TEM VÁRIAS OPÇÕES DE LOGIN EM https://socialiteproviders.com/about/
+        UMA QUE SERIA MUITO ÚTIL É A DO GOVBR, POIS DEVOLVE O CADASTRO INTEIRO, COM CPF E ENDEREÇO, CONTUDO PRECISA UMA SOLICITAÇÃO DO NOSSO SECRETÁRIO PARA O MINISTÉRIO MGI, BLALABLA, MUITO TRAMPO, DEIXEI ISSO PRA VER APÓS TER O DOMÍNIO/SSL FUNCIONANDO -->
         <!-- AUTH GOOGLE API -->
-        <div class="cartao">
+        <!-- <div class="cartao">
             <a href="{{ route('authGoogleRedirect') }}" class="flex items-center justify-center space-x-2">
                 <img class="h-6 w-6" src="{{ asset('/storage/images/google_logo.png') }}" alt="Google Logo">
                 <p class="text-gray-700 font-medium">Login com Google</p>
             </a>
-        </div>
+        </div> -->
 
         <div class="flex items-center justify-end mt-4">
             <div class="block">

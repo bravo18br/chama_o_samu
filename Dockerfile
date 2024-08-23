@@ -9,17 +9,18 @@ RUN apt-get update && apt-get install -y \
     libjpeg62-turbo-dev \
     libpng-dev \
     libzip-dev \
+    libpq-dev \
     zip \
     unzip \
     git \
     gh \
     nano \
     certbot \
-    python3-certbot-apache
-RUN localedef -i pt_BR -c -f UTF-8 -A /usr/share/locale/locale.alias pt_BR.UTF-8 \
+    python3-certbot-apache \
+    && localedef -i pt_BR -c -f UTF-8 -A /usr/share/locale/locale.alias pt_BR.UTF-8 \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd \
-    && docker-php-ext-install pdo pdo_mysql zip bcmath \
+    && docker-php-ext-install pdo pdo_mysql pdo_pgsql zip bcmath \
     && a2enmod rewrite ssl \
     && apt-get clean
 
