@@ -24,14 +24,11 @@ services:
       - APACHE_RUN_USER=www-data
       - APACHE_RUN_GROUP=www-data
       - DATABASE_URL=postgres://user:password@postgres:5432/chama_o_samu_db
-    depends_on:
-      - postgres
 
   postgres:
     image: postgres:16.4-alpine3.20
     volumes:
-      - /postgresql:/var/lib/postgresql/data
-      - ./logs/postgres.log:/var/lib/postgresql/data/log/postgresql.log
+      - chama_o_samu_db:/var/lib/postgresql/data
     networks:
       - chama_o_samu_ssl
     environment:
@@ -39,9 +36,10 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=chama_o_samu_db
       - TZ=America/Sao_Paulo
-    # command: "/bin/sh /var/lib/postgresql/data/start_postgres.sh"
 
 networks:
   chama_o_samu_ssl:
     driver: overlay
 
+volumes:
+  chama_o_samu_db:

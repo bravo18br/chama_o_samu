@@ -14,18 +14,22 @@ class SuperAdminController extends Controller
 {
     public function retornaSuperAdmin()
     {
-        $chamados_lista = Chamado::withTrashed()->get();
-        $fotos_lista = Foto::all();
-        $users_lista = User::withTrashed()->get();
-        $cartoes_lista = Cartao::withTrashed()->get();
-        $listas = [
-            'users' => $users_lista,
-            'chamados' => $chamados_lista,
-            'fotos' => $fotos_lista,
-            'cartoes' => $cartoes_lista
-        ];
-        return view('superadmin', [
-            'listas' => $listas
-        ]);
+        try {
+            $users_lista = User::withTrashed()->get();
+            // $chamados_lista = Chamado::withTrashed()->get();
+            // $fotos_lista = Foto::all();
+            // $cartoes_lista = Cartao::withTrashed()->get();
+            $listas = [
+                'users' => $users_lista,
+                // 'chamados' => $chamados_lista,
+                // 'fotos' => $fotos_lista,
+                // 'cartoes' => $cartoes_lista
+            ];
+            return view('superadmin', [
+                'listas' => $listas
+            ]);
+        } catch (\Exception $e) {
+            return redirect()->back()->with("error", $e->getMessage());
+        }
     }
 }
